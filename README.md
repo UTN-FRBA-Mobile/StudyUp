@@ -11,7 +11,7 @@
 	
 ### Tags
 	-Definir grupos de actividades/temas a estudiar
-		-Muestra un porcentaje de completitiud segun cantidad de tareas marcadas como resueltas
+	-Muestra un porcentaje de completitiud segun cantidad de tareas marcadas como resueltas
 		
 ### Bibliografia
 	- Agrega material de estudio
