@@ -20,7 +20,7 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:background="@color/green"/>
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 
