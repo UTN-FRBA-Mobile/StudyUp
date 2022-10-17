@@ -55,6 +55,16 @@ class Members: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        var members = APIService.getMembers()
+        if(members.size!=0){
+            this.fragmentRecicler = MembersFragmentList()
+            val fragment = this.fragmentRecicler
+            if (fragment != null) {
+                childFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerView, fragment)
+                    .commitNow()
+            }
+        }
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
