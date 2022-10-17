@@ -25,6 +25,9 @@ class SecondFragment : Fragment() {
     ): View? {
 
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding!!.members.setOnClickListener {
+            findNavController().navigate(R.id.action_SecondFragment_to_MembersMain)
+        }
         return binding.root
 
     }
