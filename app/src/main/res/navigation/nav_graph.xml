@@ -13,16 +13,27 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/secondFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/secondFragment"
         android:name="com.studyup.SecondFragment"
-        android:label="@string/second_fragment_label"
+        android:label="second_fragment"
         tools:layout="@layout/fragment_second">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_MembersMain"
+            app:destination="@id/MembersMain" />
+    </fragment>
+    <fragment
+        android:id="@+id/MembersMain"
+        android:name="com.studyup.classes.members.Members"
+        android:label="Miembros" >
+        <action
+            android:id="@+id/action_MembersMain_to_SecondFragment"
+            app:destination="@id/secondFragment" />
     </fragment>
 </navigation>

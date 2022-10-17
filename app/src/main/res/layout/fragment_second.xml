@@ -104,6 +104,7 @@
                 android:src="@drawable/book"
                 app:maxImageSize="50dp"/>
             <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/members"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
