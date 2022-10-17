@@ -1,5 +1,8 @@
 package com.studyup.api
 
+import com.studyup.exceptions.MemberAlreadyExists
+import com.studyup.exceptions.MemberNotFound
+
 object APIService{
     private var datasetAll = mutableListOf<Member>()
     private var dataset = mutableListOf<Member>()
@@ -26,7 +29,8 @@ object APIService{
         }
     }
     fun getMembersAll(search: String): MutableList<Member>{
-        val lista= this.datasetAll.filter {search.lowercase() in it.memberName.lowercase()}as MutableList<Member>
+        var lista= this.datasetAll.filter {search.lowercase() in it.memberName.lowercase()}as MutableList<Member>
+        lista = lista.filter{!(it.memberName in this.dataset.map{it.memberName})} as MutableList<Member>
         if(lista.size>3)
             return lista.subList(0,3)
         else
@@ -36,11 +40,14 @@ object APIService{
         return this.dataset
     }
     fun insertMember(name: String){
-        val members = this.datasetAll.filter{it.memberName==name} as MutableList<Member>
+        val members_exist = this.dataset.filter{it.memberName.lowercase()==name.lowercase()} as MutableList<Member>
+        if (members_exist.size>0)
+            throw MemberAlreadyExists()
+        val members = this.datasetAll.filter{it.memberName.lowercase()==name.lowercase()} as MutableList<Member>
         if(members.size != 0)
             this.dataset.add(members.first())
         else
-            throw Exception("UserNotFound")
+            throw MemberNotFound()
     }
     fun deleteMembers(name: String){
         this.dataset = this.dataset.filter{it.memberName!=name} as MutableList<Member>

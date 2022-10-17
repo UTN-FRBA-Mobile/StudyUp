@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/secondFragment"
         android:name="com.studyup.SecondFragment"
-        android:label="second_fragment"
+        android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 
         <action

@@ -20,6 +20,8 @@ import com.studyup.api.APIService
 import com.studyup.api.Member
 import com.studyup.databinding.FragmentMembersBinding
 import com.studyup.databinding.FragmentSecondBinding
+import com.studyup.exceptions.MemberAlreadyExists
+import com.studyup.exceptions.MemberNotFound
 
 class Members: Fragment() {
     private lateinit var _binding: FragmentMembersBinding
@@ -103,8 +105,10 @@ class Members: Fragment() {
                     }
                     this.fragmentRecicler!!.notify_update()
                     _binding.filledTextField.editText?.setText("")
-                } catch (e: Exception) {
+                } catch (e: MemberNotFound) {
                     _binding.filledTextField.error = "Usuario no encontrado"
+                }catch (e: MemberAlreadyExists){
+                    _binding.filledTextField.error = "Usuario ya asignado"
                 }
 
                 true
