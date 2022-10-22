@@ -2,8 +2,8 @@
     <string name="app_name">StudyUp</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">Equipos</string>
-    <string name="second_fragment_label">Nuevo Equipo</string>
+    <string name="dashboard_fragment_label">Equipos</string>
+    <string name="new_team_fragment_label">Nuevo Equipo</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="add_team">Agregar Equipos</string>

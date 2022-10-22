@@ -1,19 +1,23 @@
-package com.studyup
+package com.studyup.fragments
 
 import android.os.Bundle
+import android.view.*
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
+import com.studyup.R
 import com.studyup.classes.team.CardAdapter
 import com.studyup.classes.team.Team
 import com.studyup.classes.team.teams
-import com.studyup.databinding.FragmentFirstBinding
+import com.studyup.databinding.FragmentDashboardBinding
 
-class FirstFragment : Fragment() {
+class Dashboard : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentDashboardBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,24 +27,43 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
-
+        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        toolbarMenuSetup()
         populateList()
+        bindTeamsRecyclerVIew()
+        return binding.root
+    }
 
+    private fun bindTeamsRecyclerVIew() {
         binding.teams.apply {
             layoutManager = GridLayoutManager(context, 2)
             adapter = CardAdapter(teams)
         }
-        return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun toolbarMenuSetup() {
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.menu_main, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                if (menuItem.itemId === R.id.action_add) {
+                    findNavController().navigate(R.id.action_DashboardFragment_to_newTeamFragment)
+                }
+                if (menuItem.itemId === android.R.id.home) {
+                    findNavController().popBackStack()
+                }
+                return true
+            }
+        })
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        val menuHost: MenuHost = requireActivity()
+        menuHost.invalidateMenu()
         _binding = null
     }
 

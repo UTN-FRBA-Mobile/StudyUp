@@ -1,7 +1,6 @@
 package com.studyup.classes.members
 
 import android.os.Bundle
-import android.text.TextUtils.replace
 import android.view.*
 import androidx.annotation.MenuRes
 import androidx.appcompat.widget.PopupMenu
@@ -9,17 +8,12 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
-import com.studyup.MainActivity
 import com.studyup.R
 import com.studyup.api.APIService
 import com.studyup.api.Member
 import com.studyup.databinding.FragmentMembersBinding
-import com.studyup.databinding.FragmentSecondBinding
 import com.studyup.exceptions.MemberAlreadyExists
 import com.studyup.exceptions.MemberNotFound
 
@@ -75,7 +69,9 @@ class Members: Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                findNavController().navigate(R.id.action_MembersMain_to_SecondFragment)
+                if (menuItem.itemId === android.R.id.home) {
+                    findNavController().navigate(R.id.action_MembersMain_to_newTeamFragment)
+                }
                 return true
             }
         })

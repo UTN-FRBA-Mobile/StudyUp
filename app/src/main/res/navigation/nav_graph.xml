@@ -3,37 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/DashboardFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.studyup.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/DashboardFragment"
+        android:name="com.studyup.fragments.Dashboard"
+        android:label="@string/dashboard_fragment_label"
+        tools:layout="@layout/fragment_dashboard">
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/secondFragment" />
+            android:id="@+id/action_DashboardFragment_to_newTeamFragment"
+            app:destination="@id/newTeamFragment" />
     </fragment>
     <fragment
-        android:id="@+id/secondFragment"
-        android:name="com.studyup.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/newTeamFragment"
+        android:name="com.studyup.fragments.NewTeam"
+        android:label="@string/new_team_fragment_label"
+        tools:layout="@layout/fragment_new_team">
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-        <action
-            android:id="@+id/action_SecondFragment_to_MembersMain"
+            android:id="@+id/action_newTeamFragment_to_MembersMain"
             app:destination="@id/MembersMain" />
+        <action
+            android:id="@+id/action_newTeamFragment_to_DashboardFragment"
+            app:destination="@id/DashboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/MembersMain"
         android:name="com.studyup.classes.members.Members"
         android:label="Miembros" >
         <action
-            android:id="@+id/action_MembersMain_to_SecondFragment"
-            app:destination="@id/secondFragment" />
+            android:id="@+id/action_MembersMain_to_newTeamFragment"
+            app:destination="@id/newTeamFragment" />
     </fragment>
 </navigation>
