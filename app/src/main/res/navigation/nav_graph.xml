@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_newTeamFragment_to_DashboardFragment"
             app:destination="@id/DashboardFragment" />
+        <action
+            android:id="@+id/action_newTeamFragment_to_teamDetail"
+            app:destination="@id/teamDetail" />
     </fragment>
     <fragment
         android:id="@+id/MembersMain"
@@ -34,4 +37,9 @@
             android:id="@+id/action_MembersMain_to_newTeamFragment"
             app:destination="@id/newTeamFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/teamDetail"
+        android:name="com.studyup.fragments.TeamDetail"
+        android:label="@string/team_detail_label"
+        tools:layout="@layout/fragment_team_detail" />
 </navigation>

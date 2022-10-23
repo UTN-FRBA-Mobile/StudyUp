@@ -4,6 +4,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="dashboard_fragment_label">Equipos</string>
     <string name="new_team_fragment_label">Nuevo Equipo</string>
+    <string name="team_detail_label">Detalle</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="add_team">Agregar Equipos</string>
@@ -13,4 +14,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="search_hint">hint</string>
     <string name="equipo">Equipo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
