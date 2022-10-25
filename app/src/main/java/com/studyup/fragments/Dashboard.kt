@@ -85,7 +85,7 @@ class Dashboard : Fragment() {
 
             override fun onQueryTextChange(query: String?): Boolean {
                 search(query)
-                return true
+                return false
             }
         })
     }
@@ -99,12 +99,10 @@ class Dashboard : Fragment() {
 
     @SuppressLint("NewApi")
     private fun search(query: String?) {
-            var lija = filteredTeams
-            lija.clear()
-            lija.addAll(teams.filter { team: Team -> team.title.lowercase().contains(query.toString()) })
-            filteredTeams.clear()
-            filteredTeams.addAll(teams.filter { team: Team -> team.title.lowercase().contains(query.toString()) })
-
+        filteredTeams.clear()
+        filteredTeams.addAll(teams.filter { team: Team -> team.title.lowercase().contains(query.toString()) })
+        val adapter = binding.teams.adapter as CardAdapter
+        adapter.filterList(filteredTeams)
     }
 
     private fun populateList(){
