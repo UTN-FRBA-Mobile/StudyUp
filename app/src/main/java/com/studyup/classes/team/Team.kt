@@ -1,6 +1,7 @@
 package com.studyup.classes.team
 
 var teams = mutableListOf<Team>()
+var filteredTeams = mutableListOf<Team>()
 
 class Team(
     var image: Int,

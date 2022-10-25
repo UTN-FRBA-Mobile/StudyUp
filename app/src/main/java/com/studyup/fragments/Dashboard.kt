@@ -1,7 +1,14 @@
 package com.studyup.fragments
 
+import android.annotation.SuppressLint
+import android.app.SearchManager
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -12,6 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.studyup.R
 import com.studyup.classes.team.CardAdapter
 import com.studyup.classes.team.Team
+import com.studyup.classes.team.filteredTeams
 import com.studyup.classes.team.teams
 import com.studyup.databinding.FragmentDashboardBinding
 
@@ -37,7 +45,7 @@ class Dashboard : Fragment() {
     private fun bindTeamsRecyclerVIew() {
         binding.teams.apply {
             layoutManager = GridLayoutManager(context, 2)
-            adapter = CardAdapter(teams)
+            adapter = CardAdapter(filteredTeams)
         }
     }
 
@@ -46,6 +54,7 @@ class Dashboard : Fragment() {
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.menu_main, menu)
+                searchConfiguration(menu)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -60,6 +69,27 @@ class Dashboard : Fragment() {
         })
     }
 
+    private fun searchConfiguration(menu: Menu) {
+        // Associate searchable configuration with the SearchView
+        val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView: SearchView = (menu.findItem(R.id.action_search).actionView as SearchView)
+        searchView.apply {
+            setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
+        }
+        searchView.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                search(query)
+                return true
+            }
+        })
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         val menuHost: MenuHost = requireActivity()
@@ -67,7 +97,20 @@ class Dashboard : Fragment() {
         _binding = null
     }
 
+    @SuppressLint("NewApi")
+    private fun search(query: String?) {
+            var lija = filteredTeams
+            lija.clear()
+            lija.addAll(teams.filter { team: Team -> team.title.lowercase().contains(query.toString()) })
+            filteredTeams.clear()
+            filteredTeams.addAll(teams.filter { team: Team -> team.title.lowercase().contains(query.toString()) })
+
+    }
+
     private fun populateList(){
+        teams.clear()
+        filteredTeams.clear()
+
         val team1 = Team(
             R.drawable.placeholder,
             "Team 1",
@@ -130,5 +173,6 @@ class Dashboard : Fragment() {
             "Description"
         )
         teams.add(team9)
+        filteredTeams.addAll(teams)
     }
 }
