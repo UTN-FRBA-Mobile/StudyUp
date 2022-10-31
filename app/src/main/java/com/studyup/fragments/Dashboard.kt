@@ -45,7 +45,9 @@ class Dashboard : Fragment() {
     private fun bindTeamsRecyclerVIew() {
         binding.teams.apply {
             layoutManager = GridLayoutManager(context, 2)
-            adapter = CardAdapter(filteredTeams)
+            adapter = CardAdapter(filteredTeams) { team ->
+                findNavController().navigate(R.id.action_DashboardFragment_to_teamDetail)
+            }
         }
     }
 

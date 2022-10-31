@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_DashboardFragment_to_newTeamFragment"
             app:destination="@id/newTeamFragment" />
+        <action
+            android:id="@+id/action_DashboardFragment_to_teamDetail"
+            app:destination="@id/teamDetail" />
     </fragment>
     <fragment
         android:id="@+id/newTeamFragment"
@@ -25,9 +28,6 @@
         <action
             android:id="@+id/action_newTeamFragment_to_DashboardFragment"
             app:destination="@id/DashboardFragment" />
-        <action
-            android:id="@+id/action_newTeamFragment_to_teamDetail"
-            app:destination="@id/teamDetail" />
     </fragment>
     <fragment
         android:id="@+id/MembersMain"

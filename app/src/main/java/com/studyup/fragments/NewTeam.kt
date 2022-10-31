@@ -32,10 +32,6 @@ class NewTeam : Fragment() {
         _binding!!.members.setOnClickListener {
             findNavController().navigate(R.id.action_newTeamFragment_to_MembersMain)
         }
-
-        _binding!!.events.setOnClickListener {
-            findNavController().navigate(R.id.action_newTeamFragment_to_teamDetail)
-        }
     }
 
     private fun toolbarMenuSetup() {
