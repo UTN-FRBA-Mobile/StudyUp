@@ -2,17 +2,24 @@ package com.studyup.fragments
 
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.studyup.R
+import com.studyup.api.Team
 import com.studyup.classes.TeamDetailAdapter
-import com.studyup.databinding.FragmentNewTeamBinding
+import com.studyup.classes.one_team.MemberContainer
 import com.studyup.databinding.FragmentTeamDetailBinding
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,6 +69,10 @@ class TeamDetail : Fragment() {
                 else -> tab.text = "Not a tab"
             }
         }.attach()
+        val viewPager = view.findViewById(R.id.pager) as ViewPager2
+        val mypager= MyViewPagerAdapter(requireActivity())
+        mypager.addFragment(MemberContainer(Team().getMembers()))
+        viewPager.adapter = mypager
     }
 
     override fun onDestroyView() {
@@ -105,4 +116,21 @@ class TeamDetail : Fragment() {
                 }
             }
     }
+
+}
+class MyViewPagerAdapter(manager:FragmentActivity): FragmentStateAdapter(manager) {
+    private val fragmentList: MutableList<Fragment> = ArrayList()
+
+    override fun getItemCount(): Int {
+        return fragmentList.size
+    }
+
+    override fun createFragment(position: Int): Fragment {
+        return fragmentList[position]
+    }
+    fun addFragment(newFragment: Fragment){
+        fragmentList.add(newFragment)
+    }
+
+
 }
