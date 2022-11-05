@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginEnd="20dp"
+        tools:ignore="MissingConstraints">
+        <ImageView
+            android:id="@+id/user_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/people"
+            />
+
+        <ImageView
+            android:id="@+id/user_status"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@+id/user_profile"
+            android:layout_centerVertical="true"
+
+            android:layout_marginLeft="-17dp"
+            android:layout_marginBottom="-4dp"
+            android:layout_toRightOf="@+id/user_profile"
+            android:src="@drawable/active" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Placeholder"
+            android:layout_marginStart="20dp"
+            android:layout_centerVertical="true"
+            android:textSize="20dp"
+            android:layout_toEndOf="@id/user_status"/>
+        <com.google.android.material.divider.MaterialDivider
+
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toEndOf="@+id/user_profile"
+            android:layout_below="@+id/user_profile"/>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
