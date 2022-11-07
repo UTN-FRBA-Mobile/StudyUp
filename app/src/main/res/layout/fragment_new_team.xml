@@ -80,6 +80,7 @@
                 android:src="@drawable/calendar"
                 app:maxImageSize="50dp"/>
             <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/tags"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"

@@ -1,7 +1,6 @@
 package com.studyup.classes.one_team
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.studyup.R
-import com.studyup.api.APIService
 import com.studyup.api.Member
-import com.studyup.classes.members.MembersFragmentAdapter
-import com.studyup.classes.members.MembersFragmentList
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
 
 class MemberContainerElement(private var myDataset: MutableList<Member>? = null, private val recyler: MemberContainer) :

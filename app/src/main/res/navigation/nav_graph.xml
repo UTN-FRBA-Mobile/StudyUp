@@ -28,10 +28,13 @@
         <action
             android:id="@+id/action_newTeamFragment_to_DashboardFragment"
             app:destination="@id/DashboardFragment" />
+        <action
+            android:id="@+id/action_newTeamFragment_to_tags"
+            app:destination="@id/tags" />
     </fragment>
     <fragment
         android:id="@+id/MembersMain"
-        android:name="com.studyup.classes.members.Members"
+        android:name="com.studyup.classes.NewTeam.members.Members"
         android:label="Miembros" >
         <action
             android:id="@+id/action_MembersMain_to_newTeamFragment"
@@ -42,4 +45,12 @@
         android:name="com.studyup.fragments.TeamDetail"
         android:label="@string/team_detail_label"
         tools:layout="@layout/fragment_team_detail" />
+    <fragment
+        android:id="@+id/tags"
+        android:name="com.studyup.classes.NewTeam.tags.Tags"
+        android:label="Tags" >
+        <action
+            android:id="@+id/action_tags_to_newTeamFragment"
+            app:destination="@id/newTeamFragment" />
+    </fragment>
 </navigation>
