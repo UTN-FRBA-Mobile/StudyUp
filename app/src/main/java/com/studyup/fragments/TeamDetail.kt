@@ -86,7 +86,7 @@ class TeamDetail : Fragment() {
         viewPager: ViewPager2
     ) {
         mypager.addFragment(MemberContainer(Team().getMembers()))
-        mypager.addFragment(TagsFragment())
+        mypager.addFragment(TagsFragment(Team().getTags()))
         mypager.addFragment(EventsFragment())
         mypager.addFragment(SourcesFragment())
         viewPager.adapter = mypager
