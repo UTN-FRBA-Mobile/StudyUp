@@ -1,4 +1,4 @@
-package com.studyup.classes.members
+package com.studyup.classes.NewTeam.members
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

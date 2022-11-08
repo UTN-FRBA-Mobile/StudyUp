@@ -6,7 +6,7 @@ import com.studyup.exceptions.MemberNotFound
 object APIService{
     private var datasetAll = mutableListOf<Member>()
     private var dataset = mutableListOf<Member>()
-
+    private var tags = mutableListOf<Tag>()
     init {
         for (number in 1..3) {
             datasetAll.add(Member("User$number",randomImage(number), true))
@@ -17,6 +17,11 @@ object APIService{
         for (number in 1..3) {
             datasetAll.add(Member("Ejemplo$number",randomImage(number),false))
         }
+        tags.add(Tag("test", "Esto es un test",mutableListOf<Activity>(
+            Activity("Activity1", "Description"),
+            Activity("Activity2", "Description")) ))
+        tags.add(Tag("test1", "Esto es un test",mutableListOf<Activity>() ))
+        tags.add(Tag("test2", "Esto es un test",mutableListOf<Activity>() ))
     }
     fun randomImage(number: Int):String {
         if (number % 5 == 0) {
@@ -51,5 +56,22 @@ object APIService{
     }
     fun deleteMembers(name: String){
         this.dataset = this.dataset.filter{it.memberName!=name} as MutableList<Member>
+    }
+    fun getTags(): MutableList<Tag> {
+        return this.tags
+    }
+    fun insertTags(title: String,description:String){
+        this.tags.add(Tag(title,description,mutableListOf<Activity>()))
+    }
+    fun deleteTags(title: String){
+        this.tags = this.tags.filter{it.title!=title} as MutableList<Tag>
+    }
+    fun insertActivity(activity: Activity){
+        val tag = this.tags.filter{it==activity.parent} as MutableList<Tag>
+        tag.first().Activity.add(activity)
+    }
+    fun deleteActivity(activity: Activity){
+        val tag = this.tags.filter{it==activity.parent} as MutableList<Tag>
+        tag.first().Activity.remove(activity)
     }
 }
