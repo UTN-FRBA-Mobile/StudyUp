@@ -61,34 +61,6 @@ class Tags: Fragment() {
                     dialogNewTag.cancel()
                 }
             }
-
-            /*
-            var text_input = _binding.filledTextField.editText?.text.toString()
-            if (text_input == "")
-                _binding.filledTextField.error = "Completar campo"
-            else {
-                try {
-                    APIService.insertMember(text_input)
-                    if (this.fragmentRecicler == null
-                    ) {
-                        this.fragmentRecicler = MembersFragmentList()
-                        val fragment = this.fragmentRecicler
-                        if (fragment != null) {
-                            childFragmentManager.beginTransaction()
-                                .replace(R.id.fragmentContainerView, fragment)
-                                .commitNow()
-                        }
-                    }
-                    this.fragmentRecicler!!.notify_update()
-                    _binding.filledTextField.editText?.setText("")
-                } catch (e: MemberNotFound) {
-                    _binding.filledTextField.error = "Usuario no encontrado"
-                }catch (e: MemberAlreadyExists){
-                    _binding.filledTextField.error = "Usuario ya asignado"
-                }
-
-                true
-            }*/
             true
 
 
