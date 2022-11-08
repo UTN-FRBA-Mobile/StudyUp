@@ -17,7 +17,9 @@ object APIService{
         for (number in 1..3) {
             datasetAll.add(Member("Ejemplo$number",randomImage(number),false))
         }
-        tags.add(Tag("test", "Esto es un test",mutableListOf<Activity>() ))
+        tags.add(Tag("test", "Esto es un test",mutableListOf<Activity>(
+            Activity("Activity1", "Description"),
+            Activity("Activity2", "Description")) ))
         tags.add(Tag("test1", "Esto es un test",mutableListOf<Activity>() ))
         tags.add(Tag("test2", "Esto es un test",mutableListOf<Activity>() ))
     }
@@ -63,5 +65,13 @@ object APIService{
     }
     fun deleteTags(title: String){
         this.tags = this.tags.filter{it.title!=title} as MutableList<Tag>
+    }
+    fun insertActivity(activity: Activity){
+        val tag = this.tags.filter{it==activity.parent} as MutableList<Tag>
+        tag.first().Activity.add(activity)
+    }
+    fun deleteActivity(activity: Activity){
+        val tag = this.tags.filter{it==activity.parent} as MutableList<Tag>
+        tag.first().Activity.remove(activity)
     }
 }

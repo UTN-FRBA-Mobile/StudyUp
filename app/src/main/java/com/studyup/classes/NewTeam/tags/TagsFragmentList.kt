@@ -29,7 +29,7 @@ class TagsFragmentList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val myDataset = APIService.getTags()
+        val myDataset = APIService.getTags().map{TagRecycler(it,null, true,false)} as MutableList<TagRecycler>
 
         val viewManager = LinearLayoutManager(this.context)
         this.viewAdapter = TagsFragmentAdapter(myDataset, this)
@@ -42,7 +42,9 @@ class TagsFragmentList : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun notify_update(){
+        this.viewAdapter?.myDataset = APIService.getTags().map{TagRecycler(it,null, true,false)} as MutableList<TagRecycler>
         this.viewAdapter?.notifyDataSetChanged()
     }
+
 
 }
