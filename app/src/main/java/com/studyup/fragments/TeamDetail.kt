@@ -16,6 +16,9 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.studyup.R
 import com.studyup.api.Team
+import com.studyup.classes.TeamDetail.events.EventsFragment
+import com.studyup.classes.TeamDetail.sources.SourcesFragment
+import com.studyup.classes.TeamDetail.tags.TagsFragment
 import com.studyup.classes.TeamDetailAdapter
 import com.studyup.classes.one_team.MemberContainer
 import com.studyup.databinding.FragmentTeamDetailBinding
@@ -54,11 +57,18 @@ class TeamDetail : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        teamDetailAdapter = TeamDetailAdapter(this)
-        viewPager = view.findViewById(R.id.pager)
-        viewPager.adapter = teamDetailAdapter
-
+        val viewPager = view.findViewById(R.id.pager) as ViewPager2
+        val mypager = TeamDetailAdapter(requireActivity())
         val tabLayout: TabLayout = view.findViewById(R.id.tab_layout)
+
+        addViewPagerFragments(mypager, viewPager)
+        addIconsForEachTab(tabLayout, viewPager)
+    }
+
+    private fun addIconsForEachTab(
+        tabLayout: TabLayout,
+        viewPager: ViewPager2
+    ) {
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             //TODO: Refactor pls, I'm ashamed of this
             when (position) {
@@ -69,9 +79,16 @@ class TeamDetail : Fragment() {
                 else -> tab.text = "Not a tab"
             }
         }.attach()
-        val viewPager = view.findViewById(R.id.pager) as ViewPager2
-        val mypager= MyViewPagerAdapter(requireActivity())
+    }
+
+    private fun addViewPagerFragments(
+        mypager: TeamDetailAdapter,
+        viewPager: ViewPager2
+    ) {
         mypager.addFragment(MemberContainer(Team().getMembers()))
+        mypager.addFragment(TagsFragment())
+        mypager.addFragment(EventsFragment())
+        mypager.addFragment(SourcesFragment())
         viewPager.adapter = mypager
     }
 
@@ -116,21 +133,5 @@ class TeamDetail : Fragment() {
                 }
             }
     }
-
-}
-class MyViewPagerAdapter(manager:FragmentActivity): FragmentStateAdapter(manager) {
-    private val fragmentList: MutableList<Fragment> = ArrayList()
-
-    override fun getItemCount(): Int {
-        return fragmentList.size
-    }
-
-    override fun createFragment(position: Int): Fragment {
-        return fragmentList[position]
-    }
-    fun addFragment(newFragment: Fragment){
-        fragmentList.add(newFragment)
-    }
-
 
 }
