@@ -28,7 +28,7 @@ class MemberContainer(private var myDatabase: MutableList<Member>? = null): Frag
         super.onViewCreated(view, savedInstanceState)
 
         val viewManager = LinearLayoutManager(this.context)
-        this.viewAdapter = MemberContainerElement(myDatabase, this)
+        this.viewAdapter = MemberContainerElement(myDatabase)
         val viewadapter = this.viewAdapter
         recyclerView = binding.myRecyclerView.apply {
             layoutManager = viewManager

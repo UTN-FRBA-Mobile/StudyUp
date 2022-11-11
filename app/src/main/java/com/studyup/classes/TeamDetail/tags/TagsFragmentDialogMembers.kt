@@ -1,4 +1,4 @@
-package com.studyup.classes.one_team
+package com.studyup.classes.TeamDetail.tags
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -10,14 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.studyup.R
 import com.studyup.api.Member
+import com.studyup.classes.one_team.MemberContainerElement
+import com.studyup.classes.team.Team
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
 
-class MemberContainerElement(private var myDataset: MutableList<Member>? = null) :
-    RecyclerView.Adapter<MemberContainerElement.MyViewHolder>() {
+class TagsFragmentDialogMembers(private var myDataset: MutableList<Member>? = null) :
+    RecyclerView.Adapter<TagsFragmentDialogMembers.MyViewHolder>() {
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): MemberContainerElement.MyViewHolder {
+                                    viewType: Int): TagsFragmentDialogMembers.MyViewHolder {
         val view : View =
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.fragment_team_detail_member, parent, false)
@@ -27,20 +29,17 @@ class MemberContainerElement(private var myDataset: MutableList<Member>? = null)
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        if (myDataset!=null){
-            holder.view.findViewById<TextView>(R.id.user_name).text = myDataset!![position].memberName
+        if (myDataset!=null) {
+            holder.view.findViewById<TextView>(R.id.user_name).text =
+                myDataset!![position].memberName
             val img_android = holder.view.findViewById<View>(R.id.user_profile) as ImageView
             Picasso.get()
                 .load(myDataset!![position].ProfileURL)
                 .transform(CropCircleTransformation())
                 .into(img_android)
-            if (myDataset!![position].Status) {
-                holder.view.findViewById<ImageView>(R.id.user_status)
-                    .setImageResource(R.drawable.active)
-            }else{
-                holder.view.findViewById<ImageView>(R.id.user_status)
-                    .setImageResource(R.drawable.inactive)
-            }}
+            holder.view.findViewById<ImageView>(R.id.user_status)
+                .setImageResource(R.drawable.active)
+        }
     }
     override fun getItemCount(): Int {
         if (myDataset!=null) {
@@ -48,5 +47,9 @@ class MemberContainerElement(private var myDataset: MutableList<Member>? = null)
         }else{
             return 0
         }
+    }
+    fun filterList(filteredList: MutableList<Member>) {
+        myDataset = filteredList
+        notifyDataSetChanged()
     }
 }

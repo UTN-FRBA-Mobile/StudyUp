@@ -14,6 +14,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.studyup.R
 import com.studyup.api.APIService
 import com.studyup.api.Activity
+import com.studyup.api.Member
 import com.studyup.api.Tag
 
 class TagsFragmentAdapter(public var myDataset: MutableList<TagRecycler>, private val recyler: TagsFragmentList) :
@@ -102,7 +103,7 @@ class TagsFragmentAdapter(public var myDataset: MutableList<TagRecycler>, privat
 
                 viewDialog.findViewById<TextInputLayout>(R.id.title).error = null
                 viewDialog.findViewById<TextInputLayout>(R.id.description).error = null
-                val new_activity =Activity(text_title,text_description,parent.tag!!)
+                val new_activity =Activity(4,text_title,text_description,mutableListOf<Member>(),parent.tag!!)
                 APIService.insertActivity(new_activity)
                 val parent_index = myDataset.indexOf(parent)-parent.tag.Activity.size
                 dialogNewTag.cancel()

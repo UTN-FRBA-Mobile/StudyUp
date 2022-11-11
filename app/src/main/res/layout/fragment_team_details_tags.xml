@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:cardElevation="7dp"
+        app:cardBackgroundColor="#b2dfdb"
+        android:layout_margin="8dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="15dp"
+        android:clickable="true"
+        tools:ignore="MissingConstraints">
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="MissingConstraints">
+        <RelativeLayout
+            android:id="@+id/layout_percent_complete"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:id="@+id/percent_complete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_centerVertical="true"
+                android:textAlignment="center"
+                android:textColor="@color/green"
+                android:text="100%"
+                android:textSize="14dp"
+                android:layout_gravity="center_vertical"
+                tools:ignore="RtlCompat" />
+        </RelativeLayout>
+            <TextView
+                android:id="@+id/tag_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Tag 1"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="10dp"
+                android:textSize="20dp"
+                android:layout_toRightOf="@+id/layout_percent_complete"/>
+            <TextView
+                android:id="@+id/tag_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Descripcion"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="15dp"
+                android:layout_below="@+id/tag_title"
+                android:layout_marginStart="30dp"
+                android:layout_toRightOf="@+id/layout_percent_complete"
+                />
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
