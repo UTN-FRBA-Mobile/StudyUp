@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="15dp"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/dialog_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="10dp"
+                android:src="@drawable/cancel"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/dialog_activity_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@id/dialog_close"
+                android:text="Actividad X"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/dialog_activity_name"
+                android:layout_marginTop="-8dp"
+                android:layout_marginEnd="8dp"
+                android:shadowColor="@color/black"
+                android:checked="true"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_member"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="5dp"
+                android:hint="Buscar completado..."
+                app:endIconDrawable="@drawable/search"
+                app:endIconMode="custom"
+                app:startIconContentDescription="Buscar completado"
+                android:layout_below="@+id/dialog_activity_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/search_member"
+                android:layout_marginBottom="5dp">
+                <TextView
+                    android:id="@+id/percent_complete_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:text="Complete"
+                    android:textSize="15dp" />
+                <TextView
+                    android:id="@+id/percent_incomplete_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:text="Incomplete"
+                    android:textSize="15dp" />
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/search_member"
+                android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                    <TextView
+                        android:id="@+id/percent_complete"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="50%"
+                        android:textAlignment="center"
+                        android:textSize="50dp"
+                        tools:ignore="NotSibling"/>
+
+            <TextView
+                android:id="@+id/percent_incomplete"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="50%"
+                android:textSize="50dp"
+                android:textAlignment="center"/>
+            </LinearLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/head">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/dialog_members"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingConstraints" />
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

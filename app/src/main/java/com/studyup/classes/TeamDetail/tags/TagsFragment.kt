@@ -14,6 +14,8 @@ import com.studyup.api.Tag
 import com.studyup.classes.NewTeam.tags.TagRecycler
 import com.studyup.classes.one_team.MemberContainerElement
 import com.studyup.databinding.FragmentMembersListBinding
+import com.studyup.databinding.FragmentTeamDetailDialogBinding
+import com.studyup.databinding.FragmentTeamDetailTagsListBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +28,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class TagsFragment (private var myDatabase: MutableList<Tag>? = null) : Fragment() {
-    private var _binding: FragmentMembersListBinding? = null
+    private var _binding: FragmentTeamDetailTagsListBinding? = null
     private var viewAdapter: TagsFragmentElement? = null
 
     // This property is only valid between onCreateView and
@@ -36,7 +38,7 @@ class TagsFragment (private var myDatabase: MutableList<Tag>? = null) : Fragment
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentMembersListBinding.inflate(inflater, container, false)
+        _binding = FragmentTeamDetailTagsListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
