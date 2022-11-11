@@ -7,6 +7,8 @@ object APIService{
     private var datasetAll = mutableListOf<Member>()
     private var dataset = mutableListOf<Member>()
     private var tags = mutableListOf<Tag>()
+    private var events = mutableListOf<Event>()
+
     init {
         for (number in 1..3) {
             datasetAll.add(Member("User$number",randomImage(number), true))
@@ -73,5 +75,24 @@ object APIService{
     fun deleteActivity(activity: Activity){
         val tag = this.tags.filter{it==activity.parent} as MutableList<Tag>
         tag.first().Activity.remove(activity)
+    }
+
+    fun getEvents(): MutableList<Event> {
+        return this.events
+    }
+    fun insertEvent(title: String,start_date: String, end_date: String){
+        this.events.add(Event(title,start_date, end_date))
+    }
+    fun deleteEvent(title: String){
+        this.events = this.events.filter{it.title!=title} as MutableList<Event>
+    }
+
+    fun getTestEvents(): MutableList<Event> {
+        var testEvents: MutableList<Event> = mutableListOf<Event>()
+
+        val event1: Event = Event("prueba1", "10/10/1990", "15/10/1990")
+        testEvents.add(event1)
+
+        return testEvents
     }
 }

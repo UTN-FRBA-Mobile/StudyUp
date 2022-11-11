@@ -5,16 +5,13 @@ import android.view.*
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.studyup.R
+import com.studyup.api.APIService
+import com.studyup.api.Event
 import com.studyup.api.Team
 import com.studyup.classes.TeamDetail.events.EventsFragment
 import com.studyup.classes.TeamDetail.sources.SourcesFragment
@@ -49,7 +46,7 @@ class TeamDetail : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentTeamDetailBinding.inflate(inflater, container, false)
         toolbarMenuSetup()
@@ -85,9 +82,10 @@ class TeamDetail : Fragment() {
         mypager: TeamDetailAdapter,
         viewPager: ViewPager2
     ) {
+        var testEvents: MutableList<Event> = APIService.getTestEvents()
         mypager.addFragment(MemberContainer(Team().getMembers()))
         mypager.addFragment(TagsFragment())
-        mypager.addFragment(EventsFragment())
+        mypager.addFragment(EventsFragment(testEvents))
         mypager.addFragment(SourcesFragment())
         viewPager.adapter = mypager
     }
@@ -106,32 +104,12 @@ class TeamDetail : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                if (menuItem.itemId === android.R.id.home) {
+                if (menuItem.itemId == android.R.id.home) {
                     findNavController().navigate(R.id.action_newTeamFragment_to_DashboardFragment)
                 }
                 return true
             }
         })
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TeamDetail.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TeamDetail().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 
 }

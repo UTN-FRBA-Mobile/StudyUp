@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".classes.TeamDetail.events.EventsFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello world! I am the events fragment!" />
+        tools:layout_editor_absoluteX="-141dp"
+        tools:layout_editor_absoluteY="-343dp">
 
-</FrameLayout>
+        <RelativeLayout
+            android:id="@+id/browser"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp" >
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/ArrowAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:clickable="true"
+                android:padding="50dp"
+                android:scaleType="center"
+                app:backgroundTint="#4db6ac"
+                app:elevation="5dp"
+                app:maxImageSize="20dp"
+                app:srcCompat="@drawable/add"
+                app:tint="@color/white"
+                tools:ignore="MissingConstraints" />
+        </RelativeLayout>
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:name="com.studyup.classes.TeamDetail.events.EventsFragmentList"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/browser"/>
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

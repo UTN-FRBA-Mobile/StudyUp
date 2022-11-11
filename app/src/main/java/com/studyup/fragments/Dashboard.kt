@@ -38,14 +38,14 @@ class Dashboard : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         toolbarMenuSetup()
         populateList()
-        bindTeamsRecyclerVIew()
+        bindTeamsRecyclerView()
         return binding.root
     }
 
-    private fun bindTeamsRecyclerVIew() {
+    private fun bindTeamsRecyclerView() {
         binding.teams.apply {
             layoutManager = GridLayoutManager(context, 2)
-            adapter = CardAdapter(filteredTeams) { team ->
+            adapter = CardAdapter(filteredTeams) { _ ->
                 findNavController().navigate(R.id.action_DashboardFragment_to_teamDetail)
             }
         }
@@ -60,10 +60,10 @@ class Dashboard : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                if (menuItem.itemId === R.id.action_add) {
+                if (menuItem.itemId == R.id.action_add) {
                     findNavController().navigate(R.id.action_DashboardFragment_to_newTeamFragment)
                 }
-                if (menuItem.itemId === android.R.id.home) {
+                if (menuItem.itemId == android.R.id.home) {
                     findNavController().popBackStack()
                 }
                 return true
