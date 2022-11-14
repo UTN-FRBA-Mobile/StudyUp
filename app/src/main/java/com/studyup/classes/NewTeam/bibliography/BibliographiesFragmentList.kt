@@ -9,15 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.studyup.api.APIService
-import com.studyup.classes.TeamDetail.events.EventRecycler
-import com.studyup.classes.TeamDetail.events.EventRecyclerViewAdapter
 import com.studyup.databinding.FragmentMembersListBinding
 
 class BibliographiesFragmentList : Fragment() {
     private var _binding: FragmentMembersListBinding? = null
     private val binding get() = _binding!!
     private var viewAdapter: BibliographyRecyclerViewAdapter? = null
-    private var columnCount = 1
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
@@ -34,7 +31,7 @@ class BibliographiesFragmentList : Fragment() {
         val myDataset = APIService.getBibliographies().map{ BibliographyRecycler(it,false) } as MutableList<BibliographyRecycler>
 
         val viewManager = LinearLayoutManager(this.context)
-        this.viewAdapter = BibliographyRecyclerViewAdapter(myDataset, this)
+        this.viewAdapter = BibliographyRecyclerViewAdapter(myDataset)
         val viewAdapter = this.viewAdapter
         recyclerView = binding.myRecyclerView.apply {
             layoutManager = viewManager

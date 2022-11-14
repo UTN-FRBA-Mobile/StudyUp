@@ -72,7 +72,7 @@
     <fragment
         android:id="@+id/bibliography"
         android:name="com.studyup.classes.NewTeam.bibliography.BibliographiesFragment"
-        android:label="Bibliography" >
+        android:label="@string/bibliography_label" >
         <action
             android:id="@+id/action_bibliographies_to_newTeamFragment"
             app:destination="@id/newTeamFragment" />

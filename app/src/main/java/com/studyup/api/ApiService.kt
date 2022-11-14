@@ -109,4 +109,13 @@ object APIService{
         this.bibliographies =
             this.bibliographies.filter { it.title != title } as MutableList<Bibliography>
     }
+
+    fun getTestBibliographies(): MutableList<Bibliography> {
+        val testBibliographies: MutableList<Bibliography> = mutableListOf()
+
+        val bibliography = Bibliography("Esto es un titulo", "Esto es una descripcion")
+        testBibliographies.add(bibliography)
+
+        return testBibliographies
+    }
 }

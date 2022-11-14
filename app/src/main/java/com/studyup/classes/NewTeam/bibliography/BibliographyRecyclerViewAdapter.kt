@@ -1,5 +1,6 @@
 package com.studyup.classes.NewTeam.bibliography
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,7 @@ import android.widget.TextView
 import com.studyup.R
 import com.studyup.api.APIService
 
-class BibliographyRecyclerViewAdapter(public var myDataset: MutableList<BibliographyRecycler>, private val recycler: BibliographiesFragmentList) : RecyclerView.Adapter<BibliographyRecyclerViewAdapter.MyViewHolder>() {
+class BibliographyRecyclerViewAdapter(var myDataset: MutableList<BibliographyRecycler>) : RecyclerView.Adapter<BibliographyRecyclerViewAdapter.MyViewHolder>() {
 
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
@@ -25,7 +26,7 @@ class BibliographyRecyclerViewAdapter(public var myDataset: MutableList<Bibliogr
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BibliographyRecyclerViewAdapter.MyViewHolder {
+    ): MyViewHolder {
         val view: View =
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.fragment_bibliographies_content, parent, false)
@@ -34,6 +35,7 @@ class BibliographyRecyclerViewAdapter(public var myDataset: MutableList<Bibliogr
 
     override fun getItemCount() = myDataset.size
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         bindBibliographyAttributes(holder, position)
 
