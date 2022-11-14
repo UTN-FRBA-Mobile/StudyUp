@@ -34,6 +34,10 @@
         <action
             android:id="@+id/action_newTeamFragment_to_eventsFragment"
             app:destination="@id/eventsFragment" />
+        <action
+            android:id="@+id/action_newTeamFragment_to_bibliography"
+            app:destination="@id/bibliography" />
+        />
     </fragment>
     <fragment
         android:id="@+id/MembersMain"
@@ -63,6 +67,14 @@
         tools:layout="@layout/fragment_events" >
         <action
             android:id="@+id/action_eventsFragment_to_newTeamFragment"
+            app:destination="@id/newTeamFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bibliography"
+        android:name="com.studyup.classes.NewTeam.bibliography.BibliographiesFragment"
+        android:label="Bibliography" >
+        <action
+            android:id="@+id/action_bibliographies_to_newTeamFragment"
             app:destination="@id/newTeamFragment" />
     </fragment>
 </navigation>
