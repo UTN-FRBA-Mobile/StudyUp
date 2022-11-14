@@ -143,6 +143,7 @@ class EventsFragment(private var events: MutableList<Event>? = null) : Fragment(
         dialogNewTag.cancel()
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun setDateRangeButton(viewDialog: View) {
         val builder: MaterialDatePicker.Builder<Pair<Long, Long>> =
             MaterialDatePicker.Builder.dateRangePicker()

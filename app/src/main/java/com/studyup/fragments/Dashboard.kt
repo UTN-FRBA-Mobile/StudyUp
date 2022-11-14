@@ -16,6 +16,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.studyup.R
 import com.studyup.classes.team.CardAdapter
 import com.studyup.classes.team.Team
@@ -37,8 +40,8 @@ class Dashboard : Fragment() {
     ): View? {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         toolbarMenuSetup()
-        populateList()
-        bindTeamsRecyclerView()
+        //populateList()
+        //bindTeamsRecyclerView()
         return binding.root
     }
 
@@ -107,72 +110,28 @@ class Dashboard : Fragment() {
         adapter.filterList(filteredTeams)
     }
 
+    override fun onStart() {
+        super.onStart()
+        populateList()
+    }
     private fun populateList(){
         teams.clear()
         filteredTeams.clear()
+        FirebaseApp.initializeApp(this.requireContext())
+        val database = Firebase.database
+        database.getReference("user").child("0/team").get().addOnSuccessListener { it ->
+            val value: ArrayList<Long> = it.value as ArrayList<Long>
+            for (i in value){
+                database.getReference("team").child(i.toString()).get().addOnSuccessListener { it ->
+                    var title = it.child("title").value
+                    var description = it.child("description").value
+                    teams.add(Team(i.toInt(), R.drawable.placeholder,title.toString(), description.toString()))
+                    filteredTeams.add(Team(i.toInt(), R.drawable.placeholder,title.toString(), description.toString()))
+                    bindTeamsRecyclerView()
 
-        val team1 = Team(
-            R.drawable.placeholder,
-            "Team 1",
-            "Description"
-        )
-        teams.add(team1)
+                }
+            }
 
-        val team2 = Team(
-            R.drawable.placeholder,
-            "Team 2",
-            "Description"
-        )
-        teams.add(team2)
-
-        val team3 = Team(
-            R.drawable.placeholder,
-            "Team 3",
-            "Description"
-        )
-        teams.add(team3)
-
-        val team4 = Team(
-            R.drawable.placeholder,
-            "Team 4",
-            "Description"
-        )
-        teams.add(team4)
-
-        val team5 = Team(
-            R.drawable.placeholder,
-            "Team 5",
-            "Description"
-        )
-        teams.add(team5)
-
-        val team6 = Team(
-            R.drawable.placeholder,
-            "Team 6",
-            "Description"
-        )
-        teams.add(team6)
-
-        val team7 = Team(
-            R.drawable.placeholder,
-            "Team 7",
-            "Description"
-        )
-        teams.add(team7)
-
-        val team8 = Team(
-            R.drawable.placeholder,
-            "Team 8",
-            "Description"
-        )
-        teams.add(team8)
-
-        val team9 = Team(
-            R.drawable.placeholder,
-            "Team 9",
-            "Description"
-        )
-        teams.add(team9)
-        filteredTeams.addAll(teams)
+        }
     }
 }

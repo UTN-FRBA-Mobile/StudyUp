@@ -69,7 +69,7 @@ class Members: Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                if (menuItem.itemId === android.R.id.home) {
+                if (menuItem.itemId == android.R.id.home) {
                     findNavController().navigate(R.id.action_MembersMain_to_newTeamFragment)
                 }
                 return true
@@ -82,7 +82,7 @@ class Members: Fragment() {
             if (inputText.toString() != "")
                 showMenu(contextMenuTextView, R.menu.menu_members)
         }
-        _binding.ArrowAdd.setOnClickListener { view ->
+        _binding.ArrowAdd.setOnClickListener { _ ->
             var text_input = _binding.filledTextField.editText?.text.toString()
             if (text_input == "")
                 _binding.filledTextField.error = "Completar campo"
@@ -106,8 +106,6 @@ class Members: Fragment() {
                 }catch (e: MemberAlreadyExists){
                     _binding.filledTextField.error = "Usuario ya asignado"
                 }
-
-                true
             }
         }
         return _binding.root

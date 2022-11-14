@@ -6,8 +6,12 @@ import androidx.fragment.app.Fragment
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.studyup.R
 import com.studyup.databinding.FragmentNewTeamBinding
+import java.util.Collections.max
 
 class NewTeam : Fragment() {
 
@@ -39,6 +43,30 @@ class NewTeam : Fragment() {
         _binding!!.events.setOnClickListener {
             findNavController().navigate(R.id.action_newTeamFragment_to_eventsFragment)
         }
+        _binding!!.ArrowRight.setOnClickListener {
+            if (_binding!!.title.editText?.text.toString()==""){
+                _binding!!.title.error = "Completar el campo"
+            }
+            if (_binding!!.description.editText?.text.toString()==""){
+                _binding!!.description.error = "Completar el campo"
+            }
+            if (_binding!!.title.editText?.text.toString()!="" && _binding!!.description.editText?.text.toString()!="") {
+                FirebaseApp.initializeApp(this.requireContext())
+                val database = Firebase.database
+                database.getReference("team").get().addOnSuccessListener { it ->
+                    var values = it.value as ArrayList<HashMap<String, String>>
+                    var index = values.size
+                    database.getReference("user").child("0/team").child(index.toString())
+                        .setValue(index)
+                    var body = mapOf(
+                        "title" to _binding!!.title.editText?.text.toString(),
+                        "description" to _binding!!.description.editText?.text.toString()
+                    )
+                    database.getReference("team").child(index.toString()).setValue(body)
+                    findNavController().navigate(R.id.action_newTeamFragment_to_DashboardFragment)
+                }
+            }
+        }
     }
 
     private fun toolbarMenuSetup() {
@@ -50,7 +78,7 @@ class NewTeam : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                if (menuItem.itemId === android.R.id.home) {
+                if (menuItem.itemId == android.R.id.home) {
                     findNavController().navigate(R.id.action_newTeamFragment_to_DashboardFragment)
                 }
                 return true

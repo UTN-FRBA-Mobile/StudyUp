@@ -31,8 +31,7 @@ class Tags: Fragment() {
         }
 
         _binding = FragmentNewTeamTagsBinding.inflate(inflater, container, false)
-        val contextMenuTextView = _binding.root.findViewById<TextInputLayout>(R.id.filledTextField)
-        _binding.ArrowAdd.setOnClickListener { view ->
+        _binding.ArrowAdd.setOnClickListener { _ ->
             this.context?.let {
                 val viewDialog = LayoutInflater.from(this.context).inflate(R.layout.fragment_new_team_tags_dialog,null)
                 val dialogNewTag = MaterialAlertDialogBuilder(it)
@@ -61,7 +60,6 @@ class Tags: Fragment() {
                     dialogNewTag.cancel()
                 }
             }
-            true
 
 
         }
