@@ -10,7 +10,10 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.studyup.R
+import com.studyup.api.Team
 import com.studyup.databinding.FragmentNewTeamBinding
+import com.studyup.utils.State
+import com.studyup.utils.serializeToMap
 import java.util.Collections.max
 
 class NewTeam : Fragment() {
@@ -58,15 +61,22 @@ class NewTeam : Fragment() {
                     var index = values.size
                     database.getReference("user").child("0/team").child(index.toString())
                         .setValue(index)
-                    var body = mapOf(
-                        "title" to _binding!!.title.editText?.text.toString(),
-                        "description" to _binding!!.description.editText?.text.toString()
-                    )
+                    var body = getMappedTeam()
                     database.getReference("team").child(index.toString()).setValue(body)
                     findNavController().navigate(R.id.action_newTeamFragment_to_DashboardFragment)
                 }
             }
         }
+    }
+
+    private fun getMappedTeam(): Map<String, Any> {
+        var detailBody = State.newTeam.serializeToMap()
+        var body = mapOf(
+            "title" to _binding!!.title.editText?.text.toString(),
+            "description" to _binding!!.description.editText?.text.toString(),
+            "details" to detailBody
+        )
+        return body
     }
 
     private fun toolbarMenuSetup() {

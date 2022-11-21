@@ -59,8 +59,8 @@
     <fragment
         android:id="@+id/eventsFragment"
         android:name="com.studyup.classes.TeamDetail.events.EventsFragment"
-        android:label="fragment_events"
-        tools:layout="@layout/fragment_events" >
+        android:label="Eventos"
+        tools:layout="@layout/fragment_events">
         <action
             android:id="@+id/action_eventsFragment_to_newTeamFragment"
             app:destination="@id/newTeamFragment" />

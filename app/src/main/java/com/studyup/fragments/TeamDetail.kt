@@ -88,8 +88,8 @@ class TeamDetail : Fragment() {
         viewPager: ViewPager2
     ) {
         var testEvents: MutableList<Event> = APIService.getTestEvents()
-        mypager.addFragment(MemberContainer(Team().getMembers()))
-        mypager.addFragment(TagsFragment(Team().getTags()))
+        mypager.addFragment(MemberContainer(Team().members))
+        mypager.addFragment(TagsFragment(Team().tags))
         mypager.addFragment(EventsFragment(testEvents))
         mypager.addFragment(SourcesFragment())
         viewPager.adapter = mypager

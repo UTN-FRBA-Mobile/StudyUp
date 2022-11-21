@@ -16,6 +16,7 @@ import com.studyup.api.Member
 import com.studyup.databinding.FragmentMembersBinding
 import com.studyup.exceptions.MemberAlreadyExists
 import com.studyup.exceptions.MemberNotFound
+import com.studyup.utils.State
 
 class Members: Fragment() {
     private lateinit var _binding: FragmentMembersBinding
@@ -30,7 +31,7 @@ class Members: Fragment() {
             popup.menu.add(user.memberName)
         }
         popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
-            APIService.insertMember(item.title.toString())
+            addMember(item.title.toString())
             if (this.fragmentRecicler == null
             ) {
                 this.fragmentRecicler = MembersFragmentList()
@@ -88,7 +89,7 @@ class Members: Fragment() {
                 _binding.filledTextField.error = "Completar campo"
             else {
                 try {
-                    APIService.insertMember(text_input)
+                    addMember(text_input)
                     if (this.fragmentRecicler == null
                     ) {
                         this.fragmentRecicler = MembersFragmentList()
@@ -110,5 +111,10 @@ class Members: Fragment() {
         }
         return _binding.root
 
+    }
+
+    private fun addMember(text_input: String) {
+        APIService.insertMember(text_input)
+        State.newTeam.addMember(Member(text_input, "", false))
     }
 }
