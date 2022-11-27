@@ -2,19 +2,15 @@ package com.studyup.classes.TeamDetail.tags
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.studyup.R
 import com.studyup.api.APIService
 import com.studyup.api.Tag
 import com.studyup.classes.NewTeam.tags.TagRecycler
-import com.studyup.classes.one_team.MemberContainerElement
-import com.studyup.databinding.FragmentMembersListBinding
-import com.studyup.databinding.FragmentTeamDetailDialogBinding
 import com.studyup.databinding.FragmentTeamDetailTagsListBinding
 
 // TODO: Rename parameter arguments, choose names that match
