@@ -3,7 +3,6 @@ package com.studyup
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -11,14 +10,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
-import android.view.Menu
-import android.view.MenuItem
-import androidx.appcompat.widget.SearchView
-import com.google.firebase.FirebaseApp
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import com.studyup.classes.team.Team
-import com.studyup.classes.team.teams
 import com.studyup.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
