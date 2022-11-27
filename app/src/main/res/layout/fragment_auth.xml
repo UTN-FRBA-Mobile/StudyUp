@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Iniciar sesión"
-            android:textSize="36sp"/>
+            android:textSize="36sp" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -97,6 +97,11 @@
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/googleButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Google" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
