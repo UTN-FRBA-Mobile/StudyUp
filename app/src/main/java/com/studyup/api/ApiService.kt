@@ -2,12 +2,14 @@ package com.studyup.api
 
 import com.studyup.exceptions.MemberAlreadyExists
 import com.studyup.exceptions.MemberNotFound
+import com.studyup.utils.State
 
 object APIService{
     private var datasetAll = mutableListOf<Member>()
     private var dataset = mutableListOf<Member>()
     private var tags = mutableListOf<Tag>()
     private var events = mutableListOf<Event>()
+    private var bibliographies = mutableListOf<Bibliography>()
 
     init {
         for (number in 1..3) {
@@ -51,8 +53,9 @@ object APIService{
         if (members_exist.size>0)
             throw MemberAlreadyExists()
         val members = this.datasetAll.filter{it.memberName.lowercase()==name.lowercase()} as MutableList<Member>
-        if(members.size != 0)
+        if(members.size != 0) {
             this.dataset.add(members.first())
+        }
         else
             throw MemberNotFound()
     }
@@ -94,5 +97,27 @@ object APIService{
         testEvents.add(event1)
 
         return testEvents
+    }
+
+    fun getBibliographies(): MutableList<Bibliography> {
+        return this.bibliographies
+    }
+
+    fun insertBibliographies(title: String, description: String) {
+        this.bibliographies.add(Bibliography(title, description))
+    }
+
+    fun deleteBibliographies(title: String) {
+        this.bibliographies =
+            this.bibliographies.filter { it.title != title } as MutableList<Bibliography>
+    }
+
+    fun getTestBibliographies(): MutableList<Bibliography> {
+        val testBibliographies: MutableList<Bibliography> = mutableListOf()
+
+        val bibliography = Bibliography("Esto es un titulo", "Esto es una descripcion")
+        testBibliographies.add(bibliography)
+
+        return testBibliographies
     }
 }

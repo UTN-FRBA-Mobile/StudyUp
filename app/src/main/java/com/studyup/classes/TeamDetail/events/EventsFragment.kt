@@ -18,8 +18,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.studyup.R
 import com.studyup.api.APIService
+import com.studyup.api.Activity
 import com.studyup.api.Event
+import com.studyup.api.Tag
 import com.studyup.databinding.FragmentEventsBinding
+import com.studyup.utils.State
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -53,7 +56,7 @@ class EventsFragment(private var events: MutableList<Event>? = null) : Fragment(
                 buildDialog(it)
             }
             //true
-     }
+        }
         insertEventsIfTeamAlreadyExists()
         return _binding.root
 
@@ -62,7 +65,13 @@ class EventsFragment(private var events: MutableList<Event>? = null) : Fragment(
 
     private fun insertEventsIfTeamAlreadyExists() {
         if (!events.isNullOrEmpty()) {
-            events!!.forEach { event -> APIService.insertEvent(event.title,event.start_date,event.end_date) }
+            events!!.forEach { event ->
+                APIService.insertEvent(
+                    event.title,
+                    event.start_date,
+                    event.end_date
+                )
+            }
             this.fragmentRecycler!!.notify_update()
         }
     }
@@ -139,10 +148,12 @@ class EventsFragment(private var events: MutableList<Event>? = null) : Fragment(
         viewDialog.findViewById<TextView>(R.id.start_date).error = null
         viewDialog.findViewById<TextView>(R.id.end_date).error = null
         APIService.insertEvent(text_title, text_start_date, text_end_date)
+        State.newTeam.addEvent(Event(text_title, text_start_date, text_end_date))
         this.fragmentRecycler!!.notify_update()
         dialogNewTag.cancel()
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun setDateRangeButton(viewDialog: View) {
         val builder: MaterialDatePicker.Builder<Pair<Long, Long>> =
             MaterialDatePicker.Builder.dateRangePicker()

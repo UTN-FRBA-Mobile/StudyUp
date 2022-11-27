@@ -11,7 +11,7 @@ class CardViewHolder(
 ): RecyclerView.ViewHolder(cardCellBinding.root) {
     init {
         itemView.findViewById<LinearLayout>(R.id.cardLayout).setOnClickListener{
-            onItemClick(adapterPosition)
+            onItemClick(getBindingAdapterPosition())
         }
     }
 

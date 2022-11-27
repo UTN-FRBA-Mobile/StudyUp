@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".classes.TeamDetail.sources.SourcesFragment">
+    tools:context=".classes.NewTeam.bibliography.BibliographiesFragmentList">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello world! I am the sources fragment!" />
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

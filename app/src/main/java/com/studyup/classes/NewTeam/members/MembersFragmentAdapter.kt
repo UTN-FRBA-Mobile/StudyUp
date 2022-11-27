@@ -36,7 +36,7 @@ class MembersFragmentAdapter(private var myDataset: MutableList<Member>, private
             .transform(CropCircleTransformation())
             .into(img_android)
         val img_android_cancel = holder.view.findViewById<View>(R.id.cancel) as ImageView
-        img_android_cancel.setOnClickListener {  view ->
+        img_android_cancel.setOnClickListener {  _ ->
             APIService.deleteMembers(myDataset[position].memberName)
             myDataset=APIService.getMembers()
             notifyDataSetChanged()
