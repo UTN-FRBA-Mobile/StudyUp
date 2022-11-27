@@ -3,66 +3,79 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/DashboardFragment">
+    app:startDestination="@id/AuthFragment">
+    <!--  app:startDestination="@id/DashboardFragment"> -->
 
-    <fragment
-        android:id="@+id/DashboardFragment"
-        android:name="com.studyup.fragments.Dashboard"
-        android:label="@string/dashboard_fragment_label"
-        tools:layout="@layout/fragment_dashboard">
-        <action
-            android:id="@+id/action_DashboardFragment_to_newTeamFragment"
-            app:destination="@id/newTeamFragment" />
-        <action
-            android:id="@+id/action_DashboardFragment_to_teamDetail"
-            app:destination="@id/teamDetail" />
-    </fragment>
-    <fragment
-        android:id="@+id/newTeamFragment"
-        android:name="com.studyup.fragments.NewTeam"
-        android:label="@string/new_team_fragment_label"
-        tools:layout="@layout/fragment_new_team">
-        <action
-            android:id="@+id/action_newTeamFragment_to_MembersMain"
-            app:destination="@id/MembersMain" />
-        <action
-            android:id="@+id/action_newTeamFragment_to_DashboardFragment"
-            app:destination="@id/DashboardFragment" />
-        <action
-            android:id="@+id/action_newTeamFragment_to_tags"
-            app:destination="@id/tags" />
-        <action
-            android:id="@+id/action_newTeamFragment_to_eventsFragment"
-            app:destination="@id/eventsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/MembersMain"
-        android:name="com.studyup.classes.NewTeam.members.Members"
-        android:label="Miembros" >
-        <action
-            android:id="@+id/action_MembersMain_to_newTeamFragment"
-            app:destination="@id/newTeamFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/teamDetail"
-        android:name="com.studyup.fragments.TeamDetail"
-        android:label="@string/team_detail_label"
-        tools:layout="@layout/fragment_team_detail" />
-    <fragment
-        android:id="@+id/tags"
-        android:name="com.studyup.classes.NewTeam.tags.Tags"
-        android:label="Tags" >
-        <action
-            android:id="@+id/action_tags_to_newTeamFragment"
-            app:destination="@id/newTeamFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/eventsFragment"
-        android:name="com.studyup.classes.TeamDetail.events.EventsFragment"
-        android:label="fragment_events"
-        tools:layout="@layout/fragment_events" >
-        <action
-            android:id="@+id/action_eventsFragment_to_newTeamFragment"
-            app:destination="@id/newTeamFragment" />
-    </fragment>
+<fragment
+    android:id="@+id/AuthFragment"
+    android:name="com.studyup.fragments.Auth"
+    android:label="@string/auth_label"
+    >
+    <action
+        android:id="@+id/action_AuthFragment_to_dashboardFragment"
+        app:destination="@id/DashboardFragment" />
+</fragment>
+<fragment
+    android:id="@+id/DashboardFragment"
+    android:name="com.studyup.fragments.Dashboard"
+    android:label="@string/dashboard_fragment_label"
+    tools:layout="@layout/fragment_dashboard">
+    <action
+        android:id="@+id/action_DashboardFragment_to_newTeamFragment"
+        app:destination="@id/newTeamFragment" />
+    <action
+        android:id="@+id/action_DashboardFragment_to_teamDetail"
+        app:destination="@id/teamDetail" />
+    <action
+        android:id="@+id/action_DashboardFragment_to_auth"
+        app:destination="@id/AuthFragment" />
+</fragment>
+<fragment
+    android:id="@+id/newTeamFragment"
+    android:name="com.studyup.fragments.NewTeam"
+    android:label="@string/new_team_fragment_label"
+    tools:layout="@layout/fragment_new_team">
+    <action
+        android:id="@+id/action_newTeamFragment_to_MembersMain"
+        app:destination="@id/MembersMain" />
+    <action
+        android:id="@+id/action_newTeamFragment_to_DashboardFragment"
+        app:destination="@id/DashboardFragment" />
+    <action
+        android:id="@+id/action_newTeamFragment_to_tags"
+        app:destination="@id/tags" />
+    <action
+        android:id="@+id/action_newTeamFragment_to_eventsFragment"
+        app:destination="@id/eventsFragment" />
+</fragment>
+<fragment
+    android:id="@+id/MembersMain"
+    android:name="com.studyup.classes.NewTeam.members.Members"
+    android:label="Miembros" >
+    <action
+        android:id="@+id/action_MembersMain_to_newTeamFragment"
+        app:destination="@id/newTeamFragment" />
+</fragment>
+<fragment
+    android:id="@+id/teamDetail"
+    android:name="com.studyup.fragments.TeamDetail"
+    android:label="@string/team_detail_label"
+    tools:layout="@layout/fragment_team_detail" />
+<fragment
+    android:id="@+id/tags"
+    android:name="com.studyup.classes.NewTeam.tags.Tags"
+    android:label="Tags" >
+    <action
+        android:id="@+id/action_tags_to_newTeamFragment"
+        app:destination="@id/newTeamFragment" />
+</fragment>
+<fragment
+    android:id="@+id/eventsFragment"
+    android:name="com.studyup.classes.TeamDetail.events.EventsFragment"
+    android:label="fragment_events"
+    tools:layout="@layout/fragment_events" >
+    <action
+        android:id="@+id/action_eventsFragment_to_newTeamFragment"
+        app:destination="@id/newTeamFragment" />
+</fragment>
 </navigation>
