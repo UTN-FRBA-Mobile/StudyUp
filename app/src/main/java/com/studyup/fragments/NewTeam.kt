@@ -36,6 +36,7 @@ class NewTeam : Fragment() {
     }
 
     private fun setButtonListeners() {
+
         _binding!!.members.setOnClickListener {
             findNavController().navigate(R.id.action_newTeamFragment_to_MembersMain)
         }
@@ -46,6 +47,11 @@ class NewTeam : Fragment() {
         _binding!!.events.setOnClickListener {
             findNavController().navigate(R.id.action_newTeamFragment_to_eventsFragment)
         }
+
+        _binding!!.bibliographies.setOnClickListener {
+            findNavController().navigate(R.id.action_newTeamFragment_to_bibliography)
+        }
+
         _binding!!.ArrowRight.setOnClickListener {
             if (_binding!!.title.editText?.text.toString()==""){
                 _binding!!.title.error = "Completar el campo"

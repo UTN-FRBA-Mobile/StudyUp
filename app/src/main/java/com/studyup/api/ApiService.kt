@@ -9,6 +9,7 @@ object APIService{
     private var dataset = mutableListOf<Member>()
     private var tags = mutableListOf<Tag>()
     private var events = mutableListOf<Event>()
+    private var bibliographies = mutableListOf<Bibliography>()
 
     init {
         for (number in 1..3) {
@@ -96,5 +97,27 @@ object APIService{
         testEvents.add(event1)
 
         return testEvents
+    }
+
+    fun getBibliographies(): MutableList<Bibliography> {
+        return this.bibliographies
+    }
+
+    fun insertBibliographies(title: String, description: String) {
+        this.bibliographies.add(Bibliography(title, description))
+    }
+
+    fun deleteBibliographies(title: String) {
+        this.bibliographies =
+            this.bibliographies.filter { it.title != title } as MutableList<Bibliography>
+    }
+
+    fun getTestBibliographies(): MutableList<Bibliography> {
+        val testBibliographies: MutableList<Bibliography> = mutableListOf()
+
+        val bibliography = Bibliography("Esto es un titulo", "Esto es una descripcion")
+        testBibliographies.add(bibliography)
+
+        return testBibliographies
     }
 }

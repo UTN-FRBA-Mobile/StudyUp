@@ -5,21 +5,17 @@ import android.view.*
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.studyup.R
 import com.studyup.api.APIService
+import com.studyup.api.Bibliography
 import com.studyup.api.Event
 import com.studyup.api.Team
+import com.studyup.classes.NewTeam.bibliography.BibliographiesFragment
 import com.studyup.classes.TeamDetail.events.EventsFragment
-import com.studyup.classes.TeamDetail.sources.SourcesFragment
 import com.studyup.classes.TeamDetail.tags.TagsFragment
 import com.studyup.classes.TeamDetailAdapter
 import com.studyup.classes.one_team.MemberContainer
@@ -87,11 +83,12 @@ class TeamDetail : Fragment() {
         mypager: TeamDetailAdapter,
         viewPager: ViewPager2
     ) {
-        var testEvents: MutableList<Event> = APIService.getTestEvents()
+        val testEvents: MutableList<Event> = APIService.getTestEvents()
+        val testBibliographies: MutableList<Bibliography> = APIService.getTestBibliographies()
         mypager.addFragment(MemberContainer(Team().members))
         mypager.addFragment(TagsFragment(Team().tags))
         mypager.addFragment(EventsFragment(testEvents))
-        mypager.addFragment(SourcesFragment())
+        mypager.addFragment(BibliographiesFragment(testBibliographies))
         viewPager.adapter = mypager
     }
 
