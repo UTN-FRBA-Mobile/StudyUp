@@ -85,8 +85,8 @@ class TeamDetail : Fragment() {
     ) {
         val testEvents: MutableList<Event> = APIService.getTestEvents()
         val testBibliographies: MutableList<Bibliography> = APIService.getTestBibliographies()
-        mypager.addFragment(MemberContainer(Team().getMembers()))
-        mypager.addFragment(TagsFragment(Team().getTags()))
+        mypager.addFragment(MemberContainer(Team().members))
+        mypager.addFragment(TagsFragment(Team().tags))
         mypager.addFragment(EventsFragment(testEvents))
         mypager.addFragment(BibliographiesFragment(testBibliographies))
         viewPager.adapter = mypager

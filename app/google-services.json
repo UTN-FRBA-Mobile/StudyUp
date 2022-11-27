@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "731920665021",
+    "firebase_url": "https://studyup-2d532-default-rtdb.firebaseio.com",
+    "project_id": "studyup-2d532",
+    "storage_bucket": "studyup-2d532.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731920665021:android:ce09d61c3af56113efaad4",
+        "android_client_info": {
+          "package_name": "com.studyup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731920665021-91p5kq0j9sd57qtrgs57giskfh2qr4j0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAVRcEk0HPBNSjT_dgCJ5VkWqbN6bACIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731920665021-91p5kq0j9sd57qtrgs57giskfh2qr4j0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

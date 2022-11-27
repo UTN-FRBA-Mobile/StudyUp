@@ -12,6 +12,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.studyup.classes.team.Team
 import com.studyup.classes.team.teams
 import com.studyup.databinding.ActivityMainBinding

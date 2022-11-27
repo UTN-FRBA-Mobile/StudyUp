@@ -13,8 +13,13 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.studyup.R
 import com.studyup.api.APIService
+import com.studyup.api.Activity
+import com.studyup.api.Member
+import com.studyup.api.Tag
 import com.studyup.classes.NewTeam.members.MembersFragmentList
 import com.studyup.databinding.FragmentNewTeamTagsBinding
+import com.studyup.utils.State
+
 class Tags: Fragment() {
     private lateinit var _binding: FragmentNewTeamTagsBinding
     private var fragmentRecicler: TagsFragmentList? = null
@@ -31,8 +36,7 @@ class Tags: Fragment() {
         }
 
         _binding = FragmentNewTeamTagsBinding.inflate(inflater, container, false)
-        val contextMenuTextView = _binding.root.findViewById<TextInputLayout>(R.id.filledTextField)
-        _binding.ArrowAdd.setOnClickListener { view ->
+        _binding.ArrowAdd.setOnClickListener { _ ->
             this.context?.let {
                 val viewDialog = LayoutInflater.from(this.context).inflate(R.layout.fragment_new_team_tags_dialog,null)
                 val dialogNewTag = MaterialAlertDialogBuilder(it)
@@ -45,7 +49,7 @@ class Tags: Fragment() {
                     if (text_title!="" && text_description !=""){
                         viewDialog.findViewById<TextInputLayout>(R.id.title).error = null
                         viewDialog.findViewById<TextInputLayout>(R.id.description).error = null
-                        APIService.insertTags(text_title,text_description)
+                        addTag(text_title, text_description)
                         this.fragmentRecicler!!.notify_update()
                         dialogNewTag.cancel()
                     }else{
@@ -61,11 +65,15 @@ class Tags: Fragment() {
                     dialogNewTag.cancel()
                 }
             }
-            true
 
 
         }
         return _binding.root
 
+    }
+
+    private fun addTag(text_title: String, text_description: String) {
+        APIService.insertTags(text_title, text_description)
+        State.newTeam.addTag(Tag(0, text_title, text_description, mutableListOf<Activity>()))
     }
 }

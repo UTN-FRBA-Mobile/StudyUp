@@ -54,6 +54,9 @@
     </com.google.android.material.textfield.TextInputLayout>
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal|center_vertical">
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -122,6 +125,23 @@
         </LinearLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ArrowRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:clickable="true"
+        android:padding="50dp"
+        android:scaleType="center"
+        app:backgroundTint="#4db6ac"
+        app:elevation="5dp"
+        app:maxImageSize="20dp"
+        app:srcCompat="@drawable/arrow_right"
+        app:tint="@color/white"
+        tools:ignore="MissingConstraints" />
     </RelativeLayout>
 
 

@@ -16,6 +16,7 @@ import com.studyup.api.APIService
 import com.studyup.api.Activity
 import com.studyup.api.Member
 import com.studyup.api.Tag
+import com.studyup.utils.State
 
 class TagsFragmentAdapter(public var myDataset: MutableList<TagRecycler>, private val recyler: TagsFragmentList) :
     RecyclerView.Adapter<TagsFragmentAdapter.MyViewHolder>(){
@@ -104,8 +105,7 @@ class TagsFragmentAdapter(public var myDataset: MutableList<TagRecycler>, privat
                 viewDialog.findViewById<TextInputLayout>(R.id.title).error = null
                 viewDialog.findViewById<TextInputLayout>(R.id.description).error = null
                 val new_activity =Activity(4,text_title,text_description,mutableListOf<Member>(),parent.tag!!)
-                APIService.insertActivity(new_activity)
-                val parent_index = myDataset.indexOf(parent)-parent.tag.Activity.size
+                addActivityToTag(new_activity)
                 dialogNewTag.cancel()
                 //collapseParentRow(parent_index)
                 myDataset.add(myDataset.indexOf(parent),TagRecycler(null, new_activity, false,false))
@@ -128,6 +128,13 @@ class TagsFragmentAdapter(public var myDataset: MutableList<TagRecycler>, privat
         }
     }
 
+    private fun addActivityToTag(new_activity: Activity) {
+        APIService.insertActivity(new_activity)
+        val tag =
+            State.newTeam.tags.filter { it.title == new_activity.parent?.title } as MutableList<Tag>
+        tag.first().Activity.add(new_activity)
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         if (myDataset[position].isButton){
@@ -141,7 +148,7 @@ class TagsFragmentAdapter(public var myDataset: MutableList<TagRecycler>, privat
                 holder.view.findViewById<TextView>(R.id.tag_description).text =
                     myDataset[position].tag!!.description
                 val img_android_cancel = holder.view.findViewById<View>(R.id.cancel) as ImageView
-                img_android_cancel.setOnClickListener { view ->
+                img_android_cancel.setOnClickListener { _ ->
                     APIService.deleteTags(myDataset[position].tag!!.title)
                     myDataset = APIService.getTags()
                         .map { TagRecycler(it, null, true, false) } as MutableList<TagRecycler>
@@ -156,7 +163,7 @@ class TagsFragmentAdapter(public var myDataset: MutableList<TagRecycler>, privat
                 holder.view.findViewById<TextView>(R.id.tag_description).text =
                     myDataset[position].activity!!.description
                 val img_android_cancel = holder.view.findViewById<View>(R.id.cancel) as ImageView
-                img_android_cancel.setOnClickListener { view ->
+                img_android_cancel.setOnClickListener { _ ->
                     APIService.deleteActivity(myDataset[position].activity!!)
                     myDataset.removeAt(position)
                     notifyDataSetChanged()

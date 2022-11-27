@@ -70,7 +70,7 @@ class TagsFragmentDialog (private val recyler: TagsFragment= TagsFragment()): Fr
                 layoutManager =  LinearLayoutManager(this.context)
                 adapter = TagsFragmentDialogMembers(activity.memberComplete)
             }
-            binding.searchMember.editText?.doOnTextChanged { inputText, _, _, _ ->
+            binding.searchMember.editText?.doOnTextChanged { _, _, _, _ ->
 
                         search(binding.searchMember.editText?.text.toString(), activity)
 

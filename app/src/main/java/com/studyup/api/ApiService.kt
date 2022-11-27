@@ -2,6 +2,7 @@ package com.studyup.api
 
 import com.studyup.exceptions.MemberAlreadyExists
 import com.studyup.exceptions.MemberNotFound
+import com.studyup.utils.State
 
 object APIService{
     private var datasetAll = mutableListOf<Member>()
@@ -52,8 +53,9 @@ object APIService{
         if (members_exist.size>0)
             throw MemberAlreadyExists()
         val members = this.datasetAll.filter{it.memberName.lowercase()==name.lowercase()} as MutableList<Member>
-        if(members.size != 0)
+        if(members.size != 0) {
             this.dataset.add(members.first())
+        }
         else
             throw MemberNotFound()
     }
