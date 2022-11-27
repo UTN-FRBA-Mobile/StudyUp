@@ -19,8 +19,7 @@
     <string name="titulo">Titulo</string>
     <string name="fecha_de_fin">Fecha de fin</string>
     <string name="fecha_de_inicio">Fecha de inicio</string>
-
-    <!-- Bibliography -->
+    <string name="default_notification_channel_id">fcm_default_channel</string>
+    <string name="msg_token_fmt">FCM registration Token: %s</string>
     <string name="bibliography_label">Bibliografia</string>
-
 </resources>
