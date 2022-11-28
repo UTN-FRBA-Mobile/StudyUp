@@ -71,7 +71,7 @@ class Dashboard : Fragment() {
                     findNavController().navigate(R.id.action_DashboardFragment_to_newTeamFragment)
                 }
                 if (menuItem.itemId == android.R.id.home) {
-                    findNavController().popBackStack()
+                    findNavController().navigate(R.id.action_DashboardFragment_to_auth)
                 }
                 if(menuItem.itemId == R.id.action_singout){
                     showAlertSingUp()
