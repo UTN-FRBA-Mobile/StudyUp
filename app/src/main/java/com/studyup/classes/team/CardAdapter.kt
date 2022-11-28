@@ -3,6 +3,7 @@ package com.studyup.classes.team
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.studyup.classes.TeamDetail.TeamDetailSelected
 import com.studyup.databinding.CardCellBinding
 
 class CardAdapter(private var teams: List<Team>, private val onItemClick: (Team) -> Unit): RecyclerView.Adapter<CardViewHolder>() {
@@ -14,6 +15,7 @@ class CardAdapter(private var teams: List<Team>, private val onItemClick: (Team)
 
         return CardViewHolder(binding) {
             onItemClick(teams[it])
+            TeamDetailSelected.selectedTeam=teams[it].details
         }
     }
 

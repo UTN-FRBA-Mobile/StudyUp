@@ -1,5 +1,5 @@
 package com.studyup.fragments
-
+import com.studyup.api.Team as TeamDetails
 import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Context
@@ -20,10 +20,8 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.studyup.R
-import com.studyup.classes.team.CardAdapter
-import com.studyup.classes.team.Team
-import com.studyup.classes.team.filteredTeams
-import com.studyup.classes.team.teams
+import com.studyup.classes.team.*
+import com.studyup.classes.team.TeamDetail
 import com.studyup.databinding.FragmentDashboardBinding
 
 class Dashboard : Fragment() {
@@ -49,6 +47,7 @@ class Dashboard : Fragment() {
         binding.teams.apply {
             layoutManager = GridLayoutManager(context, 2)
             adapter = CardAdapter(filteredTeams) { _ ->
+                //
                 findNavController().navigate(R.id.action_DashboardFragment_to_teamDetail)
             }
         }
@@ -123,10 +122,9 @@ class Dashboard : Fragment() {
             val value: ArrayList<Long> = it.value as ArrayList<Long>
             for (i in value){
                 database.getReference("team").child(i.toString()).get().addOnSuccessListener { it ->
-                    var title = it.child("title").value
-                    var description = it.child("description").value
-                    teams.add(Team(i.toInt(), R.drawable.placeholder,title.toString(), description.toString()))
-                    filteredTeams.add(Team(i.toInt(), R.drawable.placeholder,title.toString(), description.toString()))
+                    val team: Team = it.getValue(Team::class.java) as Team
+                    teams.add(team)
+                    filteredTeams.add(team)
                     bindTeamsRecyclerView()
 
                 }

@@ -30,7 +30,7 @@ class Team {
         this.events = this.events.filter{it.title!=title} as MutableList<Event>
     }
     fun getActivity(idActivity:Int, idTag:Int): Activity{
-        val tag =  tags.find{it.id==idTag}
+        val tag =  this.tags.find{it.id==idTag}
         return tag!!.Activity.find { it.id==idActivity }!!
     }
     fun getTotalMembers():Int{

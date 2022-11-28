@@ -15,6 +15,7 @@ import com.studyup.api.Bibliography
 import com.studyup.api.Event
 import com.studyup.api.Team
 import com.studyup.classes.NewTeam.bibliography.BibliographiesFragment
+import com.studyup.classes.TeamDetail.TeamDetailSelected
 import com.studyup.classes.TeamDetail.events.EventsFragment
 import com.studyup.classes.TeamDetail.tags.TagsFragment
 import com.studyup.classes.TeamDetailAdapter
@@ -85,8 +86,9 @@ class TeamDetail : Fragment() {
     ) {
         val testEvents: MutableList<Event> = APIService.getTestEvents()
         val testBibliographies: MutableList<Bibliography> = APIService.getTestBibliographies()
-        mypager.addFragment(MemberContainer(Team().members))
-        mypager.addFragment(TagsFragment(Team().tags))
+        mypager.addFragment(MemberContainer(TeamDetailSelected.selectedTeam.members))
+        TeamDetailSelected.selectedTeam.tags.forEach{ it.checkActivity()}
+        mypager.addFragment(TagsFragment(TeamDetailSelected.selectedTeam.tags))
         mypager.addFragment(EventsFragment(testEvents))
         mypager.addFragment(BibliographiesFragment(testBibliographies))
         viewPager.adapter = mypager
