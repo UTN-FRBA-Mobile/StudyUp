@@ -103,6 +103,7 @@ class TeamDetail : Fragment() {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menu.removeItem(R.id.action_search)
                 menu.removeItem(R.id.action_add)
+                menu.removeItem(R.id.action_singout)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

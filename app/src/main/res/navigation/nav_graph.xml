@@ -6,6 +6,15 @@
     app:startDestination="@id/DashboardFragment">
 
     <fragment
+        android:id="@+id/AuthFragment"
+        android:name="com.studyup.fragments.Auth"
+        android:label="@string/auth_label"
+        >
+        <action
+            android:id="@+id/action_AuthFragment_to_dashboardFragment"
+            app:destination="@id/DashboardFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/DashboardFragment"
         android:name="com.studyup.fragments.Dashboard"
         android:label="@string/dashboard_fragment_label"
@@ -16,6 +25,9 @@
         <action
             android:id="@+id/action_DashboardFragment_to_teamDetail"
             app:destination="@id/teamDetail" />
+        <action
+            android:id="@+id/action_DashboardFragment_to_authFragment"
+            app:destination="@id/AuthFragment" />
     </fragment>
     <fragment
         android:id="@+id/newTeamFragment"

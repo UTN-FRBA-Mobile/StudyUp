@@ -15,4 +15,9 @@
         android:icon="@android:drawable/ic_input_add"
         android:title="@string/add_team"
         app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_singout"
+        android:icon="@android:drawable/ic_lock_power_off"
+        android:title="@string/add_team"
+        app:showAsAction="ifRoom"/>
 </menu>
