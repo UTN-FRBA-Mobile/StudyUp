@@ -14,8 +14,8 @@ import com.studyup.api.APIService
 import com.studyup.api.Bibliography
 import com.studyup.api.Event
 import com.studyup.api.Team
-import com.studyup.classes.NewTeam.bibliography.BibliographiesFragment
 import com.studyup.classes.TeamDetail.TeamDetailSelected
+import com.studyup.classes.TeamDetail.bibliography.bibliography
 import com.studyup.classes.TeamDetail.events.EventsFragment
 import com.studyup.classes.TeamDetail.tags.TagsFragment
 import com.studyup.classes.TeamDetailAdapter
@@ -89,8 +89,8 @@ class TeamDetail : Fragment() {
         mypager.addFragment(MemberContainer(TeamDetailSelected.selectedTeam.members))
         TeamDetailSelected.selectedTeam.tags.forEach{ it.checkActivity()}
         mypager.addFragment(TagsFragment(TeamDetailSelected.selectedTeam.tags))
-        mypager.addFragment(EventsFragment(testEvents))
-        mypager.addFragment(BibliographiesFragment(testBibliographies))
+        mypager.addFragment(EventsFragment(TeamDetailSelected.selectedTeam.events))
+        mypager.addFragment(bibliography(testBibliographies))
         viewPager.adapter = mypager
     }
 

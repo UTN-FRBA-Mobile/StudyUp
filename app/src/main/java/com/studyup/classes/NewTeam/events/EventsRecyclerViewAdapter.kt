@@ -1,13 +1,13 @@
-package com.studyup.classes.TeamDetail.events
+package com.studyup.classes.NewTeam.events
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.studyup.R
-import com.studyup.classes.TeamDetail.TeamDetailSelected
+import com.studyup.classes.TeamDetail.events.EventRecycler
 import com.studyup.utils.State
 
 class EventRecyclerViewAdapter(public var myDataset: MutableList<EventRecycler>, private val recycler: EventsFragmentList) : RecyclerView.Adapter<EventRecyclerViewAdapter.MyViewHolder>() {
@@ -41,8 +41,8 @@ class EventRecyclerViewAdapter(public var myDataset: MutableList<EventRecycler>,
         val img_android_cancel = holder.view.findViewById<View>(R.id.cancel) as ImageView
 
         img_android_cancel.setOnClickListener { _ ->
-            TeamDetailSelected.selectedTeam.removeEvent(myDataset[position].event!!.title)
-            myDataset = TeamDetailSelected.selectedTeam.events
+            State.newTeam.removeEvent(myDataset[position].event!!.title)
+            myDataset = State.newTeam.events
                 .map { EventRecycler(it) } as MutableList<EventRecycler>
             notifyDataSetChanged()
         }

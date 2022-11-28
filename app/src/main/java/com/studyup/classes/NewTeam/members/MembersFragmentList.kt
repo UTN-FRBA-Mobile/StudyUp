@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.studyup.api.APIService
 import com.studyup.databinding.FragmentMembersListBinding
+import com.studyup.utils.State
 
 class MembersFragmentList : Fragment() {
     private var _binding: FragmentMembersListBinding? = null
@@ -28,7 +28,7 @@ class MembersFragmentList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val myDataset = APIService.getMembers()
+        val myDataset = State.newTeam.members
 
         val viewManager = LinearLayoutManager(this.context)
         this.viewAdapter = MembersFragmentAdapter(myDataset, this)

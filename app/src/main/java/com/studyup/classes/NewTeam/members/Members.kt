@@ -114,7 +114,6 @@ class Members: Fragment() {
     }
 
     private fun addMember(text_input: String) {
-        APIService.insertMember(text_input)
-        State.newTeam.addMember(Member(text_input, "", false))
+        State.newTeam.addMember(Member(text_input, "https://i.pinimg.com/564x/77/7e/a9/777ea9dbf01b32c122f38339297f5298.jpg", false))
     }
 }

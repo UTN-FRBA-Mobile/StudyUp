@@ -1,28 +1,29 @@
-package com.studyup.classes.TeamDetail.events
+package com.studyup.classes.NewTeam.events
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.studyup.classes.TeamDetail.TeamDetailSelected
-import com.studyup.classes.team.teams
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.studyup.classes.TeamDetail.events.EventRecycler
 import com.studyup.databinding.FragmentMembersListBinding
+import com.studyup.utils.State
 
-/**
- * A fragment representing a list of Items.
- */
-class EventsFragmentList : Fragment() {
+class EventsFragmentList: Fragment() {
     private var _binding: FragmentMembersListBinding? = null
     private val binding get() = _binding!!
     public var viewAdapter: EventRecyclerViewAdapter? = null
     private var columnCount = 1
     private lateinit var recyclerView: RecyclerView
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentMembersListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -30,7 +31,8 @@ class EventsFragmentList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val myDataset = TeamDetailSelected.selectedTeam.events.map{EventRecycler(it,false)} as MutableList<EventRecycler>
+        val myDataset =
+            State.newTeam.events.map { EventRecycler(it, false) } as MutableList<EventRecycler>
 
         val viewManager = LinearLayoutManager(this.context)
         this.viewAdapter = EventRecyclerViewAdapter(myDataset, this)
@@ -42,8 +44,9 @@ class EventsFragmentList : Fragment() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun notify_update(){
-        this.viewAdapter?.myDataset = TeamDetailSelected.selectedTeam.events.map{ EventRecycler(it,false) } as MutableList<EventRecycler>
+    fun notify_update() {
+        this.viewAdapter?.myDataset =
+            State.newTeam.events.map { EventRecycler(it, false) } as MutableList<EventRecycler>
         this.viewAdapter?.notifyDataSetChanged()
     }
 }

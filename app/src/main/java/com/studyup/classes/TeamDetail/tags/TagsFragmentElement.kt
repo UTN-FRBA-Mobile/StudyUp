@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.studyup.R
-import com.studyup.api.APIService
 import com.studyup.api.Activity
 import com.studyup.classes.NewTeam.tags.TagRecycler
 import com.studyup.classes.NewTeam.tags.TagsFragmentAdapter

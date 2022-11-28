@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.studyup.R
-import com.studyup.api.APIService
 import com.studyup.api.Member
 import com.studyup.utils.State
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
@@ -38,9 +37,8 @@ class MembersFragmentAdapter(private var myDataset: MutableList<Member>, private
             .into(img_android)
         val img_android_cancel = holder.view.findViewById<View>(R.id.cancel) as ImageView
         img_android_cancel.setOnClickListener {  _ ->
-            APIService.deleteMembers(myDataset[position].memberName)
             State.newTeam.removeMember(myDataset[position].memberName)
-            myDataset=APIService.getMembers()
+            myDataset=State.newTeam.members
             notifyDataSetChanged()
         }
     }

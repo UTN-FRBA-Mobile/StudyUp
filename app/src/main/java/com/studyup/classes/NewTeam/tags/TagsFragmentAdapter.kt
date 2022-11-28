@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.studyup.R
-import com.studyup.api.APIService
 import com.studyup.api.Activity
 import com.studyup.api.Member
 import com.studyup.api.Tag
@@ -129,7 +128,6 @@ class TagsFragmentAdapter(public var myDataset: MutableList<TagRecycler>, privat
     }
 
     private fun addActivityToTag(new_activity: Activity) {
-        APIService.insertActivity(new_activity)
         val tag =
             State.newTeam.tags.filter { it.title == new_activity.parent?.title } as MutableList<Tag>
         tag.first().Activity.add(new_activity)
@@ -149,9 +147,8 @@ class TagsFragmentAdapter(public var myDataset: MutableList<TagRecycler>, privat
                     myDataset[position].tag!!.description
                 val img_android_cancel = holder.view.findViewById<View>(R.id.cancel) as ImageView
                 img_android_cancel.setOnClickListener { _ ->
-                    APIService.deleteTags(myDataset[position].tag!!.title)
                     State.newTeam.removeTag(myDataset[position].tag!!.title)
-                    myDataset = APIService.getTags()
+                    myDataset = State.newTeam.tags
                         .map { TagRecycler(it, null, true, false) } as MutableList<TagRecycler>
                     notifyDataSetChanged()
                 }
@@ -165,7 +162,6 @@ class TagsFragmentAdapter(public var myDataset: MutableList<TagRecycler>, privat
                     myDataset[position].activity!!.description
                 val img_android_cancel = holder.view.findViewById<View>(R.id.cancel) as ImageView
                 img_android_cancel.setOnClickListener { _ ->
-                    APIService.deleteActivity(myDataset[position].activity!!)
                     State.newTeam.removeActivity(myDataset[position].activity!!)
                     myDataset.removeAt(position)
                     notifyDataSetChanged()
