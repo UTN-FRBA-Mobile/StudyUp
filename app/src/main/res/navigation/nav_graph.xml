@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/AuthFragment">
-    <!--  app:startDestination="@id/DashboardFragment"> -->
+    app:startDestination="@id/DashboardFragment">
 
     <fragment
         android:id="@+id/AuthFragment"
@@ -27,7 +26,7 @@
             android:id="@+id/action_DashboardFragment_to_teamDetail"
             app:destination="@id/teamDetail" />
         <action
-            android:id="@+id/action_DashboardFragment_to_auth"
+            android:id="@+id/action_DashboardFragment_to_authFragment"
             app:destination="@id/AuthFragment" />
     </fragment>
     <fragment
