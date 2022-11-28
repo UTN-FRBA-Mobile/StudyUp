@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/eventsFragment"
-        android:name="com.studyup.classes.TeamDetail.events.EventsFragment"
+        android:name="com.studyup.classes.NewTeam.events.Events"
         android:label="Eventos"
         tools:layout="@layout/fragment_events">
         <action

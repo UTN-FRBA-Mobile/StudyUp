@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.studyup.api.APIService
 import com.studyup.api.Tag
 import com.studyup.classes.NewTeam.tags.TagRecycler
+import com.studyup.classes.TeamDetail.TeamDetailSelected
 import com.studyup.databinding.FragmentTeamDetailTagsListBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -53,7 +53,7 @@ class TagsFragment (private var myDatabase: MutableList<Tag>? = null) : Fragment
 
     @SuppressLint("NotifyDataSetChanged")
     fun notify_update(){
-        this.viewAdapter?.myDataset = APIService.getTags().map{TagRecycler(it,null, true,false)} as MutableList<TagRecycler>
+        this.viewAdapter?.myDataset = TeamDetailSelected.selectedTeam.tags.map{TagRecycler(it,null, true,false)} as MutableList<TagRecycler>
         this.viewAdapter?.notifyDataSetChanged()
     }
 }

@@ -1,4 +1,4 @@
-package com.studyup.classes.TeamDetail.events
+package com.studyup.classes.NewTeam.events
 
 import android.content.Context
 import android.os.Bundle
@@ -17,22 +17,13 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.studyup.R
-import com.studyup.api.Activity
 import com.studyup.api.Event
-import com.studyup.api.Tag
-import com.studyup.classes.TeamDetail.TeamDetailSelected
 import com.studyup.databinding.FragmentEventsBinding
 import com.studyup.utils.State
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-class EventsFragment(private var events: MutableList<Event>? = mutableListOf<Event>()) : Fragment() {
+class Events() : Fragment() {
     private lateinit var _binding: FragmentEventsBinding
     private var fragmentRecycler: EventsFragmentList? = null
     private val binding get() = _binding
@@ -51,12 +42,17 @@ class EventsFragment(private var events: MutableList<Event>? = mutableListOf<Eve
 
         _binding = FragmentEventsBinding.inflate(inflater, container, false)
         //val contextMenuTextView = _binding.root.findViewById<TextInputLayout>(R.id.filledTextField)
-        _binding.ArrowAdd.visibility = View.GONE
+        _binding.ArrowAdd.setOnClickListener { _ ->
+            this.context?.let {
+                buildDialog(it)
+            }
+            //true
+        }
+        //insertEventsIfTeamAlreadyExists()
         return _binding.root
 
         //return inflater.inflate(R.layout.fragment_events, container, false)
     }
-
 
     private fun buildDialog(it: Context) {
         val viewDialog =
@@ -77,25 +73,25 @@ class EventsFragment(private var events: MutableList<Event>? = mutableListOf<Eve
             setDateRangeButton(viewDialog)
         }
         viewDialog.findViewById<Button>(R.id.button_save).setOnClickListener {
-                var text_title = viewDialog.findViewById<TextInputLayout>(R.id.title).editText?.text.toString()
-                var text_start_date = viewDialog.findViewById<TextView>(R.id.start_date).text.toString()
-                var text_end_date = viewDialog.findViewById<TextView>(R.id.end_date).text.toString()
-                    if (text_title!="" && text_start_date !="" && text_end_date !=""){
-                        insertNewEvent(
-                            viewDialog,
-                            text_title,
-                            text_start_date,
-                            text_end_date,
-                            dialogNewTag
-                        )
-                    }else{
-                        showMissingFieldAlert(
-                            viewDialog,
-                            text_title,
-                            text_start_date,
-                            text_end_date
-                        )
-                    }
+            var text_title = viewDialog.findViewById<TextInputLayout>(R.id.title).editText?.text.toString()
+            var text_start_date = viewDialog.findViewById<TextView>(R.id.start_date).text.toString()
+            var text_end_date = viewDialog.findViewById<TextView>(R.id.end_date).text.toString()
+            if (text_title!="" && text_start_date !="" && text_end_date !=""){
+                insertNewEvent(
+                    viewDialog,
+                    text_title,
+                    text_start_date,
+                    text_end_date,
+                    dialogNewTag
+                )
+            }else{
+                showMissingFieldAlert(
+                    viewDialog,
+                    text_title,
+                    text_start_date,
+                    text_end_date
+                )
+            }
         }
         viewDialog.findViewById<Button>(R.id.button_cancel).setOnClickListener {
             dialogNewTag.cancel()

@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.studyup.R
-import com.studyup.api.APIService
 import com.studyup.api.Activity
 import com.studyup.api.Member
 import com.studyup.api.Tag
@@ -73,7 +72,6 @@ class Tags: Fragment() {
     }
 
     private fun addTag(text_title: String, text_description: String) {
-        APIService.insertTags(text_title, text_description)
         State.newTeam.addTag(Tag(0, text_title, text_description, mutableListOf<Activity>()))
     }
 }

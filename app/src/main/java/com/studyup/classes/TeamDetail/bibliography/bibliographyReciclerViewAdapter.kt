@@ -1,16 +1,18 @@
-package com.studyup.classes.NewTeam.bibliography
+package com.studyup.classes.TeamDetail.bibliography
 
 import android.annotation.SuppressLint
-import androidx.recyclerview.widget.RecyclerView
+import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.studyup.R
+import com.studyup.classes.NewTeam.bibliography.BibliographyRecycler
 import com.studyup.utils.State
 
-class BibliographyRecyclerViewAdapter(var myDataset: MutableList<BibliographyRecycler>) : RecyclerView.Adapter<BibliographyRecyclerViewAdapter.MyViewHolder>() {
+class bibliographyReciclerViewAdapter(var myDataset: MutableList<BibliographyRecycler>) : RecyclerView.Adapter<bibliographyReciclerViewAdapter.MyViewHolder>() {
 
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
@@ -38,15 +40,6 @@ class BibliographyRecyclerViewAdapter(var myDataset: MutableList<BibliographyRec
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         bindBibliographyAttributes(holder, position)
-
-        val img_android_cancel = holder.view.findViewById<View>(R.id.cancel) as ImageView
-
-        img_android_cancel.setOnClickListener { _ ->
-            State.newTeam.removeBibliography(myDataset[position].bibliography!!.title)
-            myDataset = State.newTeam.bibliography
-                .map { BibliographyRecycler(it) } as MutableList<BibliographyRecycler>
-            notifyDataSetChanged()
-        }
     }
 
     private fun bindBibliographyAttributes(
@@ -57,6 +50,6 @@ class BibliographyRecyclerViewAdapter(var myDataset: MutableList<BibliographyRec
             myDataset[position].bibliography!!.title
         holder.view.findViewById<TextView>(R.id.bibliography_description).text =
             myDataset[position].bibliography!!.description
+        holder.view.findViewById<ImageView>(R.id.cancel).visibility = View.INVISIBLE
     }
-
 }

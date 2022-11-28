@@ -11,7 +11,7 @@
         android:id="@+id/my_recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="110dp"
         tools:ignore="MissingConstraints" />
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/dialogContainer"
