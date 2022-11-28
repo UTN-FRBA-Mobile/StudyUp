@@ -35,10 +35,12 @@
         <entry key="..\:/nuevo_clean/StudyUp/app/src/main/res/layout/fragment_bibliographies_list.xml" value="0.1" />
         <entry key="..\:/nuevo_clean/StudyUp/app/src/main/res/layout/fragment_events.xml" value="0.10104166666666667" />
         <entry key="..\:/nuevo_clean/StudyUp/app/src/main/res/layout/fragment_events_content.xml" value="0.10104166666666667" />
+        <entry key="..\:/nuevo_clean/StudyUp/app/src/main/res/layout/fragment_members_list.xml" value="0.2171875" />
         <entry key="..\:/nuevo_clean/StudyUp/app/src/main/res/layout/fragment_new_team.xml" value="0.25" />
         <entry key="..\:/nuevo_clean/StudyUp/app/src/main/res/layout/fragment_team_detail.xml" value="0.10104166666666667" />
         <entry key="..\:/nuevo_clean/StudyUp/app/src/main/res/layout/fragment_team_detail_dialog.xml" value="0.10104166666666667" />
         <entry key="..\:/nuevo_clean/StudyUp/app/src/main/res/layout/fragment_team_detail_member.xml" value="0.1" />
+        <entry key="..\:/nuevo_clean/StudyUp/app/src/main/res/layout/fragment_team_detail_member_list.xml" value="0.2171875" />
         <entry key="..\:/nuevo_clean/StudyUp/app/src/main/res/layout/fragment_team_detail_tags_activity.xml" value="0.10104166666666667" />
         <entry key="..\:/nuevo_clean/StudyUp/app/src/main/res/layout/fragment_team_detail_tags_list.xml" value="0.10104166666666667" />
       </map>
