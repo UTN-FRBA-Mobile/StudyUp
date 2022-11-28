@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.studyup.api.APIService
 import com.studyup.databinding.FragmentMembersListBinding
+import com.studyup.utils.State
 
 class BibliographiesFragmentList : Fragment() {
     private var _binding: FragmentMembersListBinding? = null
@@ -28,7 +28,7 @@ class BibliographiesFragmentList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val myDataset = APIService.getBibliographies().map{ BibliographyRecycler(it,false) } as MutableList<BibliographyRecycler>
+        val myDataset = State.newTeam.bibliography.map{ BibliographyRecycler(it,false) } as MutableList<BibliographyRecycler>
 
         val viewManager = LinearLayoutManager(this.context)
         this.viewAdapter = BibliographyRecyclerViewAdapter(myDataset)
@@ -41,7 +41,7 @@ class BibliographiesFragmentList : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun notify_update(){
-        this.viewAdapter?.myDataset = APIService.getBibliographies().map{ BibliographyRecycler(it,false) } as MutableList<BibliographyRecycler>
+        this.viewAdapter?.myDataset = State.newTeam.bibliography.map{ BibliographyRecycler(it,false) } as MutableList<BibliographyRecycler>
         this.viewAdapter?.notifyDataSetChanged()
     }
 }

@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.studyup.MainClient
 import com.studyup.R
 import com.studyup.classes.team.*
 import com.studyup.classes.team.TeamDetail
@@ -118,7 +119,7 @@ class Dashboard : Fragment() {
         filteredTeams.clear()
         FirebaseApp.initializeApp(this.requireContext())
         val database = Firebase.database
-        database.getReference("user").child("0/team").get().addOnSuccessListener { it ->
+        database.getReference("user").child(MainClient.id.toString()).child("team").get().addOnSuccessListener { it ->
             val value: ArrayList<Long> = it.value as ArrayList<Long>
             for (i in value){
                 database.getReference("team").child(i.toString()).get().addOnSuccessListener { it ->

@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.studyup.api.Member
 import com.studyup.databinding.FragmentMembersListBinding
+import com.studyup.databinding.FragmentTeamDetailTagsListBinding
 
 class MemberContainer(private var myDatabase: MutableList<Member>? = null): Fragment() {
-    private var _binding: FragmentMembersListBinding? = null
+    private var _binding: FragmentTeamDetailTagsListBinding? = null
     private var viewAdapter: MemberContainerElement? = null
 
     // This property is only valid between onCreateView and
@@ -21,7 +22,7 @@ class MemberContainer(private var myDatabase: MutableList<Member>? = null): Frag
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentMembersListBinding.inflate(inflater, container, false)
+        _binding = FragmentTeamDetailTagsListBinding.inflate(inflater, container, false)
         return binding.root
     }
 

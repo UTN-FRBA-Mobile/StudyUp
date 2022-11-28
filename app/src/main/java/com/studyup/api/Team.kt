@@ -23,6 +23,10 @@ class Team {
         val tag = this.tags.filter{it==activity.parent} as MutableList<Tag>
         tag.first().Activity.remove(activity)
     }
+    fun completeActivity(activity: Activity){
+        val tag = this.tags.filter{it==activity.parent} as MutableList<Tag>
+        tag.first().Activity.find{it==activity}!!.memberComplete.add(Member(0,"","https://img.freepik.com/vector-premium/lindo-koala-dormir-icono-ilustracion-estilo-plano-dibujos-animados_138676-1232.jpg",true))
+    }
     fun addEvent(event: Event) {
         this.events.add(event)
     }

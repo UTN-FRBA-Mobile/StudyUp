@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.studyup.api.APIService
 import com.studyup.classes.NewTeam.members.MembersFragmentAdapter
 import com.studyup.databinding.FragmentMembersListBinding
+import com.studyup.utils.State
 
 class TagsFragmentList : Fragment() {
     private var _binding: FragmentMembersListBinding? = null
@@ -29,7 +29,7 @@ class TagsFragmentList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val myDataset = APIService.getTags().map{TagRecycler(it,null, true,false)} as MutableList<TagRecycler>
+        val myDataset = State.newTeam.tags.map{TagRecycler(it,null, true,false)} as MutableList<TagRecycler>
 
         val viewManager = LinearLayoutManager(this.context)
         this.viewAdapter = TagsFragmentAdapter(myDataset, this)
@@ -42,7 +42,7 @@ class TagsFragmentList : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun notify_update(){
-        this.viewAdapter?.myDataset = APIService.getTags().map{TagRecycler(it,null, true,false)} as MutableList<TagRecycler>
+        this.viewAdapter?.myDataset = State.newTeam.tags.map{TagRecycler(it,null, true,false)} as MutableList<TagRecycler>
         this.viewAdapter?.notifyDataSetChanged()
     }
 

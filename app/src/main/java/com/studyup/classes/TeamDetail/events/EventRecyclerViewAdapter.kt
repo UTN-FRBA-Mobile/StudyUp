@@ -37,15 +37,6 @@ class EventRecyclerViewAdapter(public var myDataset: MutableList<EventRecycler>,
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         bindEventAttributes(holder, position)
-
-        val img_android_cancel = holder.view.findViewById<View>(R.id.cancel) as ImageView
-
-        img_android_cancel.setOnClickListener { _ ->
-            TeamDetailSelected.selectedTeam.removeEvent(myDataset[position].event!!.title)
-            myDataset = TeamDetailSelected.selectedTeam.events
-                .map { EventRecycler(it) } as MutableList<EventRecycler>
-            notifyDataSetChanged()
-        }
     }
 
     private fun bindEventAttributes(
@@ -58,6 +49,7 @@ class EventRecyclerViewAdapter(public var myDataset: MutableList<EventRecycler>,
             holder.view.findViewById<TextView>(R.id.start_date).text.toString() + myDataset[position].event!!.start_date
         holder.view.findViewById<TextView>(R.id.end_date).text =
             holder.view.findViewById<TextView>(R.id.end_date).text.toString() + myDataset[position].event!!.end_date
+        holder.view.findViewById<ImageView>(R.id.cancel).visibility = View.GONE
     }
 
 }

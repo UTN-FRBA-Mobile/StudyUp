@@ -1,5 +1,5 @@
 package com.studyup.api
 
-class Member (val memberName: String, val ProfileURL: String, val Status:Boolean){
-    constructor() : this("","", true) {}
+class Member (val id:Int, val memberName: String, val ProfileURL: String, val Status:Boolean){
+    constructor() : this(1,"","", true) {}
 }

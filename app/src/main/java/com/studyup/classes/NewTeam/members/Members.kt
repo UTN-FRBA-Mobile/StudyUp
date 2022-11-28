@@ -52,7 +52,7 @@ class Members: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var members = APIService.getMembers()
+        var members = State.newTeam.members
         if(members.size!=0){
             this.fragmentRecicler = MembersFragmentList()
             val fragment = this.fragmentRecicler
@@ -114,6 +114,6 @@ class Members: Fragment() {
     }
 
     private fun addMember(text_input: String) {
-        State.newTeam.addMember(Member(text_input, "https://i.pinimg.com/564x/77/7e/a9/777ea9dbf01b32c122f38339297f5298.jpg", false))
+        State.newTeam.addMember(Member(2, text_input, "https://i.pinimg.com/564x/77/7e/a9/777ea9dbf01b32c122f38339297f5298.jpg", false))
     }
 }

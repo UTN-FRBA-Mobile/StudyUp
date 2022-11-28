@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.studyup.MainClient
 import com.studyup.R
 import com.studyup.api.Activity
 import com.studyup.api.Member
@@ -63,8 +64,10 @@ class TagsFragmentDialog (private val recyler: TagsFragment= TagsFragment()): Fr
                 ?.let { TeamDetailSelected.selectedTeam.getActivity(arguments?.getInt("idActivity")!!, it) }
         binding.dialogActivityName.text = arguments?.getString("title")
         if (activity != null) {
-            val memberCompleteSize: Double= activity.memberComplete.size.toDouble()
-
+            val memberCompleteSize: Double = activity.memberComplete.size.toDouble()
+            if (activity.memberComplete.find { it.id == MainClient.id } == null) {
+                binding.active.isChecked = false
+            }
             binding.percentComplete.text = memberCompleteSize.div(TeamDetailSelected.selectedTeam.members.size.toDouble()).times(100).roundToInt().toString() + "%"
             binding.percentIncomplete.text = ((1 - memberCompleteSize.div(TeamDetailSelected.selectedTeam.members.size.toDouble())).times(100)).roundToInt().toString() + "%"
             recyclerView = binding.dialogMembers.apply {

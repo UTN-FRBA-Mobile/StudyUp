@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
+import com.studyup.MainClient
 import com.studyup.R
 import com.studyup.api.Activity
 import com.studyup.classes.NewTeam.tags.TagRecycler
@@ -117,7 +118,9 @@ class TagsFragmentElement(public var myDataset: MutableList<TagRecycler>, privat
                     myDataset[position].activity!!.title
                 holder.view.findViewById<TextView>(R.id.tag_description).text =
                     myDataset[position].activity!!.description
-
+                    if (myDataset[position].activity!!.memberComplete.find{it.id == MainClient.id} == null) {
+                        holder.view.findViewById<ImageView>(R.id.activity_status).setImageResource(R.drawable.inactive)
+                    }
                 holder.view.findViewById<CardView>(R.id.card).setOnClickListener {
                     val bundle = Bundle()
                     bundle.putString("title", myDataset[position].activity!!.title)

@@ -13,13 +13,13 @@ object APIService{
 
     init {
         for (number in 1..3) {
-            datasetAll.add(Member("User$number",randomImage(number), true))
+            datasetAll.add(Member(2,"User$number",randomImage(number), true))
         }
         for (number in 1..3) {
-            datasetAll.add(Member("Test$number",randomImage(number),false))
+            datasetAll.add(Member(2,"Test$number",randomImage(number),false))
         }
         for (number in 1..3) {
-            datasetAll.add(Member("Ejemplo$number",randomImage(number),false))
+            datasetAll.add(Member(2,"Ejemplo$number",randomImage(number),false))
         }
     }
     fun randomImage(number: Int):String {

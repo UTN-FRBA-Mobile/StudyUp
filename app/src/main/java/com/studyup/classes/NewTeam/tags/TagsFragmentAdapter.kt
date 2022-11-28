@@ -11,11 +11,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
+import com.squareup.picasso.Picasso
 import com.studyup.R
 import com.studyup.api.Activity
 import com.studyup.api.Member
 import com.studyup.api.Tag
 import com.studyup.utils.State
+import jp.wasabeef.picasso.transformations.CropCircleTransformation
 
 class TagsFragmentAdapter(public var myDataset: MutableList<TagRecycler>, private val recyler: TagsFragmentList) :
     RecyclerView.Adapter<TagsFragmentAdapter.MyViewHolder>(){
