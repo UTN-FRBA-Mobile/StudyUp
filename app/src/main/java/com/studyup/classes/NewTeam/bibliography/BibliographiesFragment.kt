@@ -15,6 +15,7 @@ import com.studyup.R
 import com.studyup.api.APIService
 import com.studyup.api.Bibliography
 import com.studyup.databinding.FragmentBibliographiesBinding
+import com.studyup.utils.State
 
 class BibliographiesFragment(private var bibliographies: MutableList<Bibliography>? = null) :
     Fragment() {
@@ -94,6 +95,7 @@ class BibliographiesFragment(private var bibliographies: MutableList<Bibliograph
     ) {
         viewDialog.findViewById<TextInputLayout>(R.id.title).error = null
         viewDialog.findViewById<TextInputLayout>(R.id.description).error = null
+        State.newTeam.addBibliography(Bibliography(title, description))
         APIService.insertBibliographies(title, description)
         this.fragmentRecycler!!.notify_update()
         dialogNewTag.cancel()

@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.studyup.R
 import com.studyup.api.APIService
+import com.studyup.utils.State
 
 class EventRecyclerViewAdapter(public var myDataset: MutableList<EventRecycler>, private val recycler: EventsFragmentList) : RecyclerView.Adapter<EventRecyclerViewAdapter.MyViewHolder>() {
 
@@ -41,6 +42,7 @@ class EventRecyclerViewAdapter(public var myDataset: MutableList<EventRecycler>,
 
         img_android_cancel.setOnClickListener { _ ->
             APIService.deleteEvent(myDataset[position].event!!.title)
+            State.newTeam.removeEvent(myDataset[position].event!!.title)
             myDataset = APIService.getEvents()
                 .map { EventRecycler(it) } as MutableList<EventRecycler>
             notifyDataSetChanged()

@@ -2,7 +2,6 @@ package com.studyup
 
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController

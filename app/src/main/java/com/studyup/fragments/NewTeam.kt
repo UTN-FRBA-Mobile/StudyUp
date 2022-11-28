@@ -10,6 +10,7 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.studyup.R
+import com.studyup.api.APIService
 import com.studyup.api.Team
 import com.studyup.databinding.FragmentNewTeamBinding
 import com.studyup.utils.State
@@ -70,6 +71,8 @@ class NewTeam : Fragment() {
                     var body = getMappedTeam()
                     database.getReference("team").child(index.toString()).setValue(body)
                     findNavController().navigate(R.id.action_newTeamFragment_to_DashboardFragment)
+                    State.cleanTeam()
+                    APIService.cleanAll()
                 }
             }
         }

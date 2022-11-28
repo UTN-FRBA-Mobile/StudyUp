@@ -150,6 +150,7 @@ class TagsFragmentAdapter(public var myDataset: MutableList<TagRecycler>, privat
                 val img_android_cancel = holder.view.findViewById<View>(R.id.cancel) as ImageView
                 img_android_cancel.setOnClickListener { _ ->
                     APIService.deleteTags(myDataset[position].tag!!.title)
+                    State.newTeam.removeTag(myDataset[position].tag!!.title)
                     myDataset = APIService.getTags()
                         .map { TagRecycler(it, null, true, false) } as MutableList<TagRecycler>
                     notifyDataSetChanged()
@@ -165,6 +166,7 @@ class TagsFragmentAdapter(public var myDataset: MutableList<TagRecycler>, privat
                 val img_android_cancel = holder.view.findViewById<View>(R.id.cancel) as ImageView
                 img_android_cancel.setOnClickListener { _ ->
                     APIService.deleteActivity(myDataset[position].activity!!)
+                    State.newTeam.removeActivity(myDataset[position].activity!!)
                     myDataset.removeAt(position)
                     notifyDataSetChanged()
                 }

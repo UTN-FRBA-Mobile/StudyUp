@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.studyup.R
 import com.studyup.api.APIService
+import com.studyup.utils.State
 
 class BibliographyRecyclerViewAdapter(var myDataset: MutableList<BibliographyRecycler>) : RecyclerView.Adapter<BibliographyRecyclerViewAdapter.MyViewHolder>() {
 
@@ -43,6 +44,7 @@ class BibliographyRecyclerViewAdapter(var myDataset: MutableList<BibliographyRec
 
         img_android_cancel.setOnClickListener { _ ->
             APIService.deleteBibliographies(myDataset[position].bibliography!!.title)
+            State.newTeam.removeBibliography(myDataset[position].bibliography!!.title)
             myDataset = APIService.getBibliographies()
                 .map { BibliographyRecycler(it) } as MutableList<BibliographyRecycler>
             notifyDataSetChanged()

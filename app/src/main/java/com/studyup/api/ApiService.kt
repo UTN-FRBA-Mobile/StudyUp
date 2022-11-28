@@ -21,11 +21,6 @@ object APIService{
         for (number in 1..3) {
             datasetAll.add(Member("Ejemplo$number",randomImage(number),false))
         }
-        tags.add(Tag(1,"test", "Esto es un test",mutableListOf<Activity>(
-            Activity(1,"Activity1", "Description", datasetAll.subList(0,6)),
-            Activity(2,"Activity2", "Description",datasetAll.subList(0,3))) ))
-        tags.add(Tag(2,"test1", "Esto es un test",mutableListOf<Activity>() ))
-        tags.add(Tag(3,"test2", "Esto es un test",mutableListOf<Activity>() ))
     }
     fun randomImage(number: Int):String {
         if (number % 5 == 0) {
@@ -119,5 +114,12 @@ object APIService{
         testBibliographies.add(bibliography)
 
         return testBibliographies
+    }
+    fun cleanAll(){
+        this.dataset = mutableListOf<Member>()
+        this.tags = mutableListOf<Tag>()
+        this.events = mutableListOf<Event>()
+        this.bibliographies = mutableListOf<Bibliography>()
+
     }
 }
