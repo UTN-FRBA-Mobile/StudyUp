@@ -67,6 +67,7 @@ class Members: Fragment() {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menu.removeItem(R.id.action_search)
                 menu.removeItem(R.id.action_add)
+                menu.removeItem(R.id.action_singout)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -116,4 +117,5 @@ class Members: Fragment() {
     private fun addMember(text_input: String) {
         State.newTeam.addMember(Member(2, text_input, "https://i.pinimg.com/564x/77/7e/a9/777ea9dbf01b32c122f38339297f5298.jpg", false))
     }
+
 }
